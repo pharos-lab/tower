@@ -63,6 +63,10 @@
   </aside>
 </template>
 
-<script setup></script>
+<script setup>
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+import { Bars3BottomLeftIcon } from '@heroicons/vue/24/solid';
+import { PhotoIcon } from '@heroicons/vue/24/outline';
+</script>
 
 <style scoped></style>
