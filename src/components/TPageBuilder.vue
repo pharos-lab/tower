@@ -63,7 +63,22 @@
         </div>
       </div>
     </aside>
-    <div class="canvas bg-red-200 grow"></div>
+    <div class="canvas bg-red-200 grow">
+      <div class="t-add-section flex justify-center items-center h-40">
+        <button
+          class="
+            t-add-section-action
+            w-48
+            h-20
+            pointer-cursor
+            border-2 border-dashed border-sky-500
+            bg-sky-50
+          "
+        >
+          Add section
+        </button>
+      </div>
+    </div>
   </section>
 </template>
 
