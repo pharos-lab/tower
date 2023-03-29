@@ -1,0 +1,68 @@
+<template>
+  <aside class="t-toolbar w-48 bg-slate-500 overflow-auto">
+    <div class="t-search relative p-2">
+      <input
+        type="text"
+        class="
+          rounded
+          block
+          py-2
+          pl-9
+          bg-slate-200
+          w-full
+          placeholder:text-sm placeholder:italic
+        "
+        placeholder="search components"
+      />
+      <span
+        class="
+          absolute
+          top-2
+          w-8
+          h-10
+          flex
+          justify-center
+          items-center
+          bg-slate-300
+          rounded-l
+          text-slate-700
+        "
+      >
+        <MagnifyingGlassIcon class="w-5 h-5" />
+      </span>
+    </div>
+
+    <div
+      class="
+        t-components
+        grid grid-cols-2
+        border border-slate-600
+        overflow-auto
+      "
+    >
+      <div
+        class="
+          aspect-square
+          flex
+          justify-center
+          items-center
+          bg-slate-700
+          text-white
+          border-2 border-slate-600
+          hover:bg-slate-600
+          cursor-pointer
+        "
+        v-for="n in 20"
+      >
+        <div class="">
+          <Bars3BottomLeftIcon class="w-8 h-8" />
+          <p class="text-sm font-semibold">Text</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+</template>
+
+<script setup></script>
+
+<style scoped></style>
