@@ -1,7 +1,6 @@
 <template>
   <section class="t-page-builder h-full flex">
-    <TSidebar />
-    <div class="canvas bg-red-200 grow">
+    <div class="canvas bg-red-200 grow relative" id="canvas">
       <div class="t-add-section flex justify-center items-center h-40">
         <button
           class="
@@ -16,8 +15,9 @@
         >
           Add section
         </button>
-        <TModal :show="showModal" @closeModal="showModal = false"> </TModal>
       </div>
+
+      <TModalSection :show="showModal" @closeModal="showModal = false" />
     </div>
   </section>
 </template>
@@ -25,7 +25,7 @@
 <script setup>
 import { ref } from 'vue';
 import TSidebar from './TSidebar.vue';
-import TModal from './TModal.vue';
+import TModalSection from './TModalSection.vue';
 
 const props = defineProps({});
 
