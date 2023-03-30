@@ -30,6 +30,8 @@ import TModalSection from './TModalSection.vue';
 const props = defineProps({});
 
 const showModal = ref();
+
+const sections = ref({});
 </script>
 
 <style scoped>
