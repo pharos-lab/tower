@@ -11,15 +11,15 @@
             border-2 border-dashed border-sky-500
             bg-sky-50
           "
-          @click="showModal = true"
+          @click="state.showModal = true"
         >
           Add section
         </button>
       </div>
 
       <TModalSection
-        :show="showModal"
-        @closeModal="showModal = false"
+        :show="state.showModal"
+        @closeModal="state.showModal = false"
         @sectionChosen="addSection"
       />
     </div>
@@ -33,21 +33,24 @@ import TModalSection from './TModalSection.vue';
 
 const props = defineProps({});
 
-const showModal = ref();
-const sections = ref([]);
-const id = ref(1);
-const order = ref(1);
+const state = reactive({
+  id: 1,
+  order: 1,
+  sections: [],
+  showModal: false,
+});
 
 function addSection(type) {
-  sections.value.push({
-    id: id.value,
-    order: order.value,
+  state.sections.push({
+    id: state.id,
+    order: state.order,
     type: type,
     options: {},
   });
 
-  id.value++;
-  order.value++;
+  state.id++;
+  state.order++;
+  console.log(state);
 }
 </script>
 

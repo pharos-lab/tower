@@ -66,7 +66,7 @@
         <div
           class="
             one-block
-            w-5
+            w-3
             h-8
             border-slate-600 border-r border-2
             rounded-l
@@ -77,7 +77,7 @@
         <div
           class="
             one-block
-            w-5
+            w-3
             h-8
             border-2 border-slate-600 border-x
             cursor-pointer
@@ -87,7 +87,7 @@
         <div
           class="
             one-block
-            w-5
+            w-3
             h-8
             border-slate-600 border-l border-2
             rounded-r
