@@ -15,8 +15,12 @@
           items-center
           justify-center
           cursor-pointer
+          rounded
         "
-        @click="handleSelected('oneBlockSection')"
+        :class="[
+          selected == 'oneBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+        ]"
+        @click="chooseSelected('oneBlockSection')"
       >
         <div class="w-10 h-8 border-2 border-slate-600 rounded"></div>
       </div>
@@ -31,8 +35,12 @@
           items-center
           justify-center
           cursor-pointer
+          rounded
         "
-        @click="handleSelected('twoBlockSection')"
+        :class="[
+          selected == 'twoBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+        ]"
+        @click="chooseSelected('twoBlockSection')"
       >
         <div class="w-5 h-8 border-slate-600 border-r border-2 rounded-l"></div>
         <div class="w-5 h-8 border-2 border-slate-600 border-l rounded-r"></div>
@@ -48,8 +56,12 @@
           items-center
           justify-center
           cursor-pointer
+          rounded
         "
-        @click="handleSelected('threeBlockSection')"
+        :class="[
+          selected == 'threeBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+        ]"
+        @click="chooseSelected('threeBlockSection')"
       >
         <div
           class="
@@ -86,8 +98,14 @@
     </div>
 
     <template #footer>
-      {{ selected }}
-      <button>Create section</button>
+      <div class="flex justify-end">
+        <button
+          class="rounded bg-emerald-500 text-white px-4 py-2"
+          @click="submitSectionChoice"
+        >
+          Create section
+        </button>
+      </div>
     </template>
   </TModal>
 </template>
@@ -96,7 +114,7 @@
 import { ref } from 'vue';
 import TModal from './TModal.vue';
 
-const emits = defineEmits(['closeModal']);
+const emits = defineEmits(['closeModal', 'sectionChosen']);
 
 const props = defineProps({
   dismissable: {
@@ -107,9 +125,15 @@ const props = defineProps({
   to: String,
 });
 
-const selected = ref('ok');
+const selected = ref();
 
-function handleSelected(section) {
+function chooseSelected(section) {
   selected.value = section;
+}
+
+function submitSectionChoice() {
+  console.log('ok')
+  emit('sectionChosen', selected);
+  emit('closeModal');
 }
 </script>
