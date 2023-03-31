@@ -114,7 +114,7 @@
 import { ref } from 'vue';
 import TModal from './TModal.vue';
 
-const emits = defineEmits(['closeModal', 'sectionChosen']);
+const emit = defineEmits(['closeModal', 'sectionChosen']);
 
 const props = defineProps({
   dismissable: {
@@ -132,8 +132,7 @@ function chooseSelected(section) {
 }
 
 function submitSectionChoice() {
-  console.log('ok')
-  emit('sectionChosen', selected);
+  emit('sectionChosen', selected.value);
   emit('closeModal');
 }
 </script>

@@ -17,21 +17,38 @@
         </button>
       </div>
 
-      <TModalSection :show="showModal" @closeModal="showModal = false" />
+      <TModalSection
+        :show="showModal"
+        @closeModal="showModal = false"
+        @sectionChosen="addSection"
+      />
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 
 const props = defineProps({});
 
 const showModal = ref();
+const sections = ref([]);
+const id = ref(1);
+const order = ref(1);
 
-const sections = ref({});
+function addSection(type) {
+  sections.value.push({
+    id: id.value,
+    order: order.value,
+    type: type,
+    options: {},
+  });
+
+  id.value++;
+  order.value++;
+}
 </script>
 
 <style scoped>
