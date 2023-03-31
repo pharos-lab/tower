@@ -36,12 +36,15 @@ const props = defineProps({});
 const state = reactive({
   id: 1,
   order: 1,
-  sections: [],
+  page: {
+    sections: [],
+    options: {},
+  },
   showModal: false,
 });
 
 function addSection(type) {
-  state.sections.push({
+  state.page.sections.push({
     id: state.id,
     order: state.order,
     type: type,
@@ -50,7 +53,6 @@ function addSection(type) {
 
   state.id++;
   state.order++;
-  console.log(state);
 }
 </script>
 

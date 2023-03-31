@@ -10,7 +10,6 @@
           layout
           w-20
           h-20
-          bg-slate-200
           flex
           items-center
           justify-center
@@ -18,7 +17,9 @@
           rounded
         "
         :class="[
-          selected == 'oneBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+          selected == 'oneBlockSection'
+            ? 'bg-sky-200 border-sky-600'
+            : 'bg-slate-200',
         ]"
         @click="chooseSelected('oneBlockSection')"
       >
@@ -30,7 +31,6 @@
           layout
           w-20
           h-20
-          bg-slate-200
           flex
           items-center
           justify-center
@@ -38,7 +38,9 @@
           rounded
         "
         :class="[
-          selected == 'twoBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+          selected == 'twoBlockSection'
+            ? 'bg-sky-200 border-sky-600'
+            : 'bg-slate-200',
         ]"
         @click="chooseSelected('twoBlockSection')"
       >
@@ -51,7 +53,6 @@
           layout
           w-20
           h-20
-          bg-slate-200
           flex
           items-center
           justify-center
@@ -59,7 +60,9 @@
           rounded
         "
         :class="[
-          selected == 'threeBlockSection' ? 'bg-sky-200 border-sky-600' : '',
+          selected == 'threeBlockSection'
+            ? 'bg-sky-200 border-sky-600'
+            : 'bg-slate-200',
         ]"
         @click="chooseSelected('threeBlockSection')"
       >
