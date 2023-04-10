@@ -1,6 +1,12 @@
 <template>
   <section class="t-page-builder h-full flex">
-    <div class="canvas bg-red-200 grow relative" id="canvas">
+    <div class="canvas bg-slate-100 grow relative" id="canvas">
+      <div class="sections">
+        <div class="section" v-for="section in state.page.sections">
+          <component :is="sections[section.type]"></component>
+        </div>
+      </div>
+
       <div class="t-add-section flex justify-center items-center h-40">
         <button
           class="
@@ -22,6 +28,10 @@
         @closeModal="state.showModal = false"
         @sectionChosen="addSection"
       />
+
+      <pre>
+      {{ state.page }}
+      </pre>
     </div>
   </section>
 </template>
@@ -30,11 +40,15 @@
 import { ref, reactive } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
+import OneBlockSection from './layouts/OneBlockSection.vue';
 
 const props = defineProps({});
 
+const sections = {
+  OneBlockSection: OneBlockSection,
+};
+
 const state = reactive({
-  id: 1,
   order: 1,
   page: {
     sections: [],
@@ -45,14 +59,15 @@ const state = reactive({
 
 function addSection(type) {
   state.page.sections.push({
-    id: state.id,
     order: state.order,
     type: type,
     options: {},
+    blocks: [],
   });
 
-  state.id++;
   state.order++;
+
+  console.log(state.page);
 }
 </script>
 

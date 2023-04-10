@@ -17,11 +17,11 @@
           rounded
         "
         :class="[
-          selected == 'oneBlockSection'
+          selected == 'OneBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('oneBlockSection')"
+        @click="chooseSelected('OneBlockSection')"
       >
         <div class="w-10 h-8 border-2 border-slate-600 rounded"></div>
       </div>
@@ -38,11 +38,11 @@
           rounded
         "
         :class="[
-          selected == 'twoBlockSection'
+          selected == 'TwoBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('twoBlockSection')"
+        @click="chooseSelected('TwoBlockSection')"
       >
         <div class="w-5 h-8 border-slate-600 border-r border-2 rounded-l"></div>
         <div class="w-5 h-8 border-2 border-slate-600 border-l rounded-r"></div>
@@ -60,11 +60,11 @@
           rounded
         "
         :class="[
-          selected == 'threeBlockSection'
+          selected == 'ThreeBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('threeBlockSection')"
+        @click="chooseSelected('ThreeBlockSection')"
       >
         <div
           class="
