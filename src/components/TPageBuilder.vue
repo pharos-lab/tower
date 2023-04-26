@@ -1,9 +1,10 @@
 <template>
-  <section class="t-page-builder h-full flex">
+  <section class="t-page-builder flex">
     <div class="canvas bg-slate-100 grow relative" id="canvas">
       <div class="sections">
         <div class="section" v-for="(section, index) in state.page.sections" :key="index">
           <component :is="sections[section.type]"></component>
+          <BlockSection></BlockSection>
         </div>
       </div>
 
@@ -41,6 +42,7 @@ import { ref, reactive } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import OneBlockSection from './layouts/OneBlockSection.vue';
+import BlockSection from './layouts/BlockSection.vue'
 
 const props = defineProps({});
 
@@ -57,17 +59,16 @@ const state = reactive({
   showModal: false,
 });
 
-function addSection(type) {
+function addSection(section) {
   state.page.sections.push({
     order: state.order,
-    type: type,
+    type: section.type,
+    numerOfBlock: section.numberOfBlock,
     options: {},
     blocks: [],
   });
 
   state.order++;
-
-  console.log(state.page);
 }
 </script>
 

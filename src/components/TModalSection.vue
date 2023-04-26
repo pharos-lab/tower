@@ -17,11 +17,11 @@
           rounded
         "
         :class="[
-          selected == 'OneBlockSection'
+          section.type == 'OneBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('OneBlockSection')"
+        @click="chooseSelected('OneBlockSection', 1)"
       >
         <div class="w-10 h-8 border-2 border-slate-600 rounded"></div>
       </div>
@@ -38,11 +38,11 @@
           rounded
         "
         :class="[
-          selected == 'TwoBlockSection'
+          section.type == 'TwoBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('TwoBlockSection')"
+        @click="chooseSelected('TwoBlockSection', 2)"
       >
         <div class="w-5 h-8 border-slate-600 border-r border-2 rounded-l"></div>
         <div class="w-5 h-8 border-2 border-slate-600 border-l rounded-r"></div>
@@ -60,11 +60,11 @@
           rounded
         "
         :class="[
-          selected == 'ThreeBlockSection'
+          section.type == 'ThreeBlockSection'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('ThreeBlockSection')"
+        @click="chooseSelected('ThreeBlockSection', 3)"
       >
         <div
           class="
@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import TModal from './TModal.vue';
 
 const emit = defineEmits(['closeModal', 'sectionChosen']);
@@ -128,14 +128,18 @@ const props = defineProps({
   to: String,
 });
 
-const selected = ref();
+const section = reactive({
+  type: 'OneBlockSection',
+  numberOfBlock: 1
+})
 
-function chooseSelected(section) {
-  selected.value = section;
+function chooseSelected(sectionType, blockNumber) {
+  section.type = sectionType;
+  section.numberOfBlock = blockNumber;
 }
 
 function submitSectionChoice() {
-  emit('sectionChosen', selected.value);
+  emit('sectionChosen', section);
   emit('closeModal');
 }
 </script>
