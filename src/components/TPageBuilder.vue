@@ -3,8 +3,8 @@
     <div class="canvas bg-slate-100 grow relative" id="canvas">
       <div class="sections">
         <div class="section" v-for="(section, index) in state.page.sections" :key="index">
-          <component :is="sections[section.type]"></component>
-          <BlockSection></BlockSection>
+          <!-- <component :is="sections[section.type]"></component>-->
+          <BlockSection :numberOfBlock="section.numberOfBlock"></BlockSection>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ function addSection(section) {
   state.page.sections.push({
     order: state.order,
     type: section.type,
-    numerOfBlock: section.numberOfBlock,
+    numberOfBlock: section.numberOfBlock,
     options: {},
     blocks: [],
   });
