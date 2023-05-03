@@ -3,7 +3,7 @@
     <div
       class="
         l-modal
-        absolute
+        fixed
         inset-0
         flex
         justify-center
