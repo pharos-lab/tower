@@ -1,9 +1,10 @@
 <template>
   <div class="t-section border border-red-500 h-96 grid" :class="gridClass">
     <TBlock
-      v-for="(n, index) in numberOfBlock"
+      v-for="(n, index) in section.numberOfBlock"
       :key="index"
-      :sectionId="props.sectionId"
+      :sectionId="section.id"
+      @showModalComponent="$emit('showModalComponent')"
     >
     </TBlock>
   </div>
@@ -14,12 +15,11 @@ import { computed } from 'vue';
 import TBlock from './TBlock.vue';
 
 const props = defineProps({
-  numberOfBlock: Number,
-  sectionId: Number,
+  section: Object,
 });
 
 const gridClass = computed(() => {
-  switch (props.numberOfBlock) {
+  switch (props.section.numberOfBlock) {
     case 1:
       return 'grid-cols-1';
     case 2:

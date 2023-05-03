@@ -10,9 +10,9 @@
           border-2 border-dashed border-emerald-500
           bg-emerald-50
         "
-        @click=""
+        @click="$emit('showModalComponent', sectionId)"
       >
-        Add Block
+        Add Component
       </button>
     </div>
   </div>

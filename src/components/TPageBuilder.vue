@@ -4,10 +4,10 @@
       <div class="t-sections">
         <!-- <component :is="sections[section.type]"></component>-->
         <TSection
-          :numberOfBlock="section.numberOfBlock"
           v-for="section in state.page.sections"
           :key="section.id"
-          :sectionId="section.id"
+          :section="section"
+          @showModalComponent="state.showModalComponent = true"
         ></TSection>
       </div>
 
@@ -21,16 +21,22 @@
             border-2 border-dashed border-sky-500
             bg-sky-50
           "
-          @click="state.showModal = true"
+          @click="state.showModalSection = true"
         >
           Add section
         </button>
       </div>
 
       <TModalSection
-        :show="state.showModal"
-        @closeModal="state.showModal = false"
+        :show="state.showModalSection"
+        @closeModal="state.showModalSection = false"
         @sectionChosen="addSection"
+      />
+
+      <TModalComponent
+        :show="state.showModalComponent"
+        @closeModal="state.showModalComponent = false"
+        @componentChosen="addComponent"
       />
 
       <pre>
@@ -44,6 +50,7 @@
 import { ref, reactive } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
+import TModalComponent from './TModalComponent.vue';
 import TSection from './layouts/TSection.vue';
 
 const props = defineProps({});
@@ -55,7 +62,8 @@ const state = reactive({
     sections: [],
     options: {},
   },
-  showModal: false,
+  showModalSection: false,
+  showModalComponent: false,
 });
 
 function addSection(section) {
@@ -70,6 +78,10 @@ function addSection(section) {
 
   state.order++;
   state.id++;
+}
+
+fucntion addComponent(sectionId) {
+
 }
 </script>
 
