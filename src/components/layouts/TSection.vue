@@ -1,18 +1,21 @@
 <template>
   <div class="t-section border border-red-500 h-96 grid" :class="gridClass">
-    <div
-      class="t-block border border-green-500 h-full"
+    <TBlock
       v-for="(n, index) in numberOfBlock"
       :key="index"
-    ></div>
+      :sectionId="props.sectionId"
+    >
+    </TBlock>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
+import TBlock from './TBlock.vue';
 
 const props = defineProps({
   numberOfBlock: Number,
+  sectionId: Number,
 });
 
 const gridClass = computed(() => {

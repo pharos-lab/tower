@@ -1,11 +1,14 @@
 <template>
   <section class="t-page-builder flex">
     <div class="canvas bg-slate-100 grow relative" id="canvas">
-      <div class="sections">
-        <div class="section" v-for="(section, index) in state.page.sections" :key="index">
-          <!-- <component :is="sections[section.type]"></component>-->
-          <BlockSection :numberOfBlock="section.numberOfBlock"></BlockSection>
-        </div>
+      <div class="t-sections">
+        <!-- <component :is="sections[section.type]"></component>-->
+        <TSection
+          :numberOfBlock="section.numberOfBlock"
+          v-for="section in state.page.sections"
+          :key="section.id"
+          :sectionId="section.id"
+        ></TSection>
       </div>
 
       <div class="t-add-section flex justify-center items-center h-40">
@@ -41,17 +44,13 @@
 import { ref, reactive } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
-import OneBlockSection from './layouts/OneBlockSection.vue';
-import BlockSection from './layouts/BlockSection.vue'
+import TSection from './layouts/TSection.vue';
 
 const props = defineProps({});
 
-const sections = {
-  OneBlockSection: OneBlockSection,
-};
-
 const state = reactive({
   order: 1,
+  id: 1,
   page: {
     sections: [],
     options: {},
@@ -61,6 +60,7 @@ const state = reactive({
 
 function addSection(section) {
   state.page.sections.push({
+    id: state.id,
     order: state.order,
     type: section.type,
     numberOfBlock: section.numberOfBlock,
@@ -69,6 +69,7 @@ function addSection(section) {
   });
 
   state.order++;
+  state.id++;
 }
 </script>
 
