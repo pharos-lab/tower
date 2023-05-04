@@ -1,9 +1,9 @@
 <template>
   <div class="t-section border border-red-500 h-96 grid" :class="gridClass">
     <TBlock
-      v-for="(n, index) in section.numberOfBlock"
-      :key="index"
-      :sectionId="section.id"
+      v-for="(block, index) in section.blocks"
+      :key="block.id"
+      :block="block"
       @showModalComponent="$emit('showModalComponent')"
     >
     </TBlock>

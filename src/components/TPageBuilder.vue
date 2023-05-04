@@ -56,8 +56,9 @@ import TSection from './layouts/TSection.vue';
 const props = defineProps({});
 
 const state = reactive({
-  order: 1,
-  id: 1,
+  sectionOrder: 1,
+  sectionId: 1,
+  blockId: 1,
   page: {
     sections: [],
     options: {},
@@ -68,20 +69,37 @@ const state = reactive({
 
 function addSection(section) {
   state.page.sections.push({
-    id: state.id,
-    order: state.order,
+    id: state.sectionId,
+    order: state.sectionOrder,
     type: section.type,
     numberOfBlock: section.numberOfBlock,
     options: {},
-    blocks: [],
+    blocks: createBlocks(section),
   });
 
-  state.order++;
-  state.id++;
+  state.sectionOrder++;
+  state.sectionId++;
 }
 
-fucntion addComponent(sectionId) {
+function addComponent(component) {
+  console.log(component.name);
+}
 
+function createBlocks(section) {
+  let order = 1;
+  let blocks = [];
+  for (let i = 0; i < section.numberOfBlock; i++) {
+    blocks.push({
+      id: state.blockId,
+      order: order,
+      name: section.id,
+      components: [],
+    });
+    order++;
+    state.blockId++;
+  }
+
+  return blocks;
 }
 </script>
 

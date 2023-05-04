@@ -17,7 +17,7 @@
           rounded
         "
         :class="[
-          section.type == 'component1'
+          component.name == 'component1'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -40,7 +40,7 @@
           rounded
         "
         :class="[
-          section.type == 'component2'
+          component.name == 'component2'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -63,7 +63,7 @@
           rounded
         "
         :class="[
-          section.type == 'component3'
+          component.name == 'component3'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -79,7 +79,7 @@
           class="rounded bg-emerald-500 text-white px-4 py-2"
           @click="submitComponentChoice"
         >
-          Create section
+          Create component
         </button>
       </div>
     </template>
@@ -90,7 +90,7 @@
 import { ref, reactive } from 'vue';
 import TModal from './TModal.vue';
 
-const emit = defineEmits(['closeModal', 'sectionChosen']);
+const emit = defineEmits(['closeModal', 'componentChosen']);
 
 const props = defineProps({
   dismissable: {
@@ -101,18 +101,16 @@ const props = defineProps({
   to: String,
 });
 
-const section = reactive({
-  type: 'OneBlockSection',
-  numberOfBlock: 1,
+const component = reactive({
+  name: 'component1',
 });
 
-function chooseSelected(sectionType, blockNumber) {
-  section.type = sectionType;
-  section.numberOfBlock = blockNumber;
+function chooseSelected(componentName) {
+  component.name = componentName;
 }
 
-function submitcomponentChoice() {
-  emit('componentChosen', section);
+function submitComponentChoice() {
+  emit('componentChosen', component);
   emit('closeModal');
 }
 </script>
