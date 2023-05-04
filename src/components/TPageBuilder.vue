@@ -7,7 +7,7 @@
           v-for="section in state.page.sections"
           :key="section.id"
           :section="section"
-          @showModalComponent="state.showModalComponent = true"
+          @showModalComponent="showModalComponent"
         ></TSection>
       </div>
 
@@ -40,7 +40,7 @@
       />
 
       <pre>
-      {{ state.page }}
+      {{ state }}
       </pre>
     </div>
   </section>
@@ -59,6 +59,7 @@ const state = reactive({
   sectionOrder: 1,
   sectionId: 1,
   blockId: 1,
+  currentBlock: null,
   page: {
     sections: [],
     options: {},
@@ -81,10 +82,6 @@ function addSection(section) {
   state.sectionId++;
 }
 
-function addComponent(component) {
-  console.log(component.name);
-}
-
 function createBlocks(section) {
   let order = 1;
   let blocks = [];
@@ -92,14 +89,29 @@ function createBlocks(section) {
     blocks.push({
       id: state.blockId,
       order: order,
-      name: section.id,
       components: [],
+      sectionId: state.sectionId,
+      componentOrder: 1
     });
     order++;
     state.blockId++;
   }
 
   return blocks;
+}
+
+function addComponent(componentName) {
+  state.currentBlock.components.push({
+    name: componentName,
+    order: state.currentBlock.componentOrder
+  });
+
+  state.currentBlock.componentOrder++
+}
+
+function showModalComponent(block) {
+  state.currentBlock = block;
+  state.showModalComponent = true;
 }
 </script>
 

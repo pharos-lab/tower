@@ -10,7 +10,7 @@
           border-2 border-dashed border-emerald-500
           bg-emerald-50
         "
-        @click="$emit('showModalComponent', sectionId)"
+        @click="$emit('showModalComponent', block)"
       >
         Add Component
       </button>
@@ -22,7 +22,7 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-  sectionId: Number,
+  block: Object,
 });
 </script>
 

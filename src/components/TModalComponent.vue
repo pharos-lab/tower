@@ -17,7 +17,7 @@
           rounded
         "
         :class="[
-          component.name == 'component1'
+          componentName == 'component1'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -40,7 +40,7 @@
           rounded
         "
         :class="[
-          component.name == 'component2'
+          componentName == 'component2'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -63,7 +63,7 @@
           rounded
         "
         :class="[
-          component.name == 'component3'
+          componentName == 'component3'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
@@ -87,7 +87,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, computed } from 'vue';
 import TModal from './TModal.vue';
 
 const emit = defineEmits(['closeModal', 'componentChosen']);
@@ -101,16 +101,14 @@ const props = defineProps({
   to: String,
 });
 
-const component = reactive({
-  name: 'component1',
-});
+const componentName = ref('component1');
 
-function chooseSelected(componentName) {
-  component.name = componentName;
+function chooseSelected(chosen) {
+  componentName.value = chosen;
 }
 
 function submitComponentChoice() {
-  emit('componentChosen', component);
+  emit('componentChosen', componentName.value);
   emit('closeModal');
 }
 </script>
