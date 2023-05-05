@@ -4,7 +4,6 @@
       v-for="(block, index) in section.blocks"
       :key="block.id"
       :block="block"
-      @showModalComponent="$emit('showModalComponent', block)"
     >
     </TBlock>
   </div>

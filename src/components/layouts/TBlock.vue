@@ -10,7 +10,7 @@
           border-2 border-dashed border-emerald-500
           bg-emerald-50
         "
-        @click="$emit('showModalComponent', block)"
+        @click="handleModalComponent"
       >
         Add Component
       </button>
@@ -20,10 +20,18 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useBuilder } from '@/stores/store.js';
+
+const builder = useBuilder();
 
 const props = defineProps({
   block: Object,
 });
+
+function handleModalComponent() {
+  builder.currentBlock = props.block;
+  builder.showModalComponent = true;
+}
 </script>
 
 <style scoped></style>

@@ -7,7 +7,6 @@
           v-for="section in builder.sections"
           :key="section.id"
           :section="section"
-          @showModalComponent="showModalComponent"
         ></TSection>
       </div>
 
@@ -27,17 +26,9 @@
         </button>
       </div>
 
-      <TModalSection
-        :show="builder.showModalSection"
-        @closeModal="builder.showModalSection = false"
-        @sectionChosen="addSection"
-      />
+      <TModalSection :show="builder.showModalSection" />
 
-      <TModalComponent
-        :show="builder.showModalComponent"
-        @closeModal="builder.showModalComponent = false"
-        @componentChosen="addComponent"
-      />
+      <TModalComponent :show="builder.showModalComponent" />
 
       <pre>
       {{ builder }}

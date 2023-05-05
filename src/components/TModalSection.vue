@@ -146,7 +146,6 @@ function chooseSelected(sectionType, blockNumber) {
 }
 
 function submitSectionChoice() {
-  console.log(this);
   builder.sections.push({
     id: builder.sectionId,
     order: builder.sectionOrder,
@@ -159,7 +158,24 @@ function submitSectionChoice() {
   builder.sectionOrder++;
   builder.sectionId++;
 
-  emit('sectionChosen', section);
-  emit('closeModal');
+  builder.showModalSection = false;
+}
+
+function createBlocks(section) {
+  let order = 1;
+  let blocks = [];
+  for (let i = 0; i < section.numberOfBlock; i++) {
+    blocks.push({
+      id: builder.blockId,
+      order: order,
+      components: [],
+      sectionId: builder.sectionId,
+      componentOrder: 1,
+    });
+    order++;
+    builder.blockId++;
+  }
+
+  return blocks;
 }
 </script>

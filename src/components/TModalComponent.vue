@@ -1,5 +1,9 @@
 <template>
-  <TModal :show="props.show" @closeModal="$emit('closeModal')" to="#canvas">
+  <TModal
+    :show="builder.showModalComponent"
+    @closeModal="builder.showModalComponent = false"
+    to="#canvas"
+  >
     <template #header>
       <h3>Choose The Component</h3>
     </template>
@@ -89,8 +93,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import TModal from './TModal.vue';
+import { useBuilder } from '@/stores/store.js';
 
-const emit = defineEmits(['closeModal', 'componentChosen']);
+const builder = useBuilder();
 
 const props = defineProps({
   dismissable: {
@@ -108,7 +113,12 @@ function chooseSelected(chosen) {
 }
 
 function submitComponentChoice() {
-  emit('componentChosen', componentName.value);
-  emit('closeModal');
+  builder.currentBlock.components.push({
+    name: componentName.value,
+    order: builder.currentBlock.componentOrder,
+  });
+
+  builder.currentBlock.componentOrder++;
+  builder.showModalComponent = false;
 }
 </script>
