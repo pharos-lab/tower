@@ -1,5 +1,7 @@
 <template>
   <div class="t-block border border-green-500 h-full">
+    <component is="vue:Test" v-for="component in block.components"></component>
+
     <div class="t-add-block flex justify-center items-center h-24">
       <button
         class="
@@ -21,6 +23,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useBuilder } from '@/stores/store.js';
+import Test from './Test.vue';
 
 const builder = useBuilder();
 

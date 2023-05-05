@@ -47,66 +47,6 @@ import { useBuilder } from '@/stores/store.js';
 
 const props = defineProps({});
 const builder = useBuilder();
-
-/*const state = reactive({
-  sectionOrder: 1,
-  sectionId: 1,
-  blockId: 1,
-  currentBlock: null,
-  page: {
-    sections: [],
-    options: {},
-  },
-  showModalSection: false,
-  showModalComponent: false,
-});
-
-function addSection(section) {
-  state.page.sections.push({
-    id: state.sectionId,
-    order: state.sectionOrder,
-    type: section.type,
-    numberOfBlock: section.numberOfBlock,
-    options: {},
-    blocks: createBlocks(section),
-  });
-
-  state.sectionOrder++;
-  state.sectionId++;
-}
-
-function createBlocks(section) {
-  let order = 1;
-  let blocks = [];
-  for (let i = 0; i < section.numberOfBlock; i++) {
-    blocks.push({
-      id: state.blockId,
-      order: order,
-      components: [],
-      sectionId: state.sectionId,
-      componentOrder: 1,
-    });
-    order++;
-    state.blockId++;
-  }
-
-  return blocks;
-}
-
-function addComponent(componentName) {
-  state.currentBlock.components.push({
-    name: componentName,
-    order: state.currentBlock.componentOrder,
-  });
-
-  state.currentBlock.componentOrder++;
-}
-
-function showModalComponent(block) {
-  state.currentBlock = block;
-  state.showModalComponent = true;
-}
-*/
 </script>
 
 <style scoped>
