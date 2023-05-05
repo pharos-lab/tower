@@ -4,7 +4,7 @@
       <div class="t-sections">
         <!-- <component :is="sections[section.type]"></component>-->
         <TSection
-          v-for="section in state.page.sections"
+          v-for="section in builder.sections"
           :key="section.id"
           :section="section"
           @showModalComponent="showModalComponent"
@@ -21,26 +21,26 @@
             border-2 border-dashed border-sky-500
             bg-sky-50
           "
-          @click="state.showModalSection = true"
+          @click="builder.showModalSection = true"
         >
           Add section
         </button>
       </div>
 
       <TModalSection
-        :show="state.showModalSection"
-        @closeModal="state.showModalSection = false"
+        :show="builder.showModalSection"
+        @closeModal="builder.showModalSection = false"
         @sectionChosen="addSection"
       />
 
       <TModalComponent
-        :show="state.showModalComponent"
-        @closeModal="state.showModalComponent = false"
+        :show="builder.showModalComponent"
+        @closeModal="builder.showModalComponent = false"
         @componentChosen="addComponent"
       />
 
       <pre>
-      {{ state }}
+      {{ builder }}
       </pre>
     </div>
   </section>
@@ -52,10 +52,12 @@ import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import TModalComponent from './TModalComponent.vue';
 import TSection from './layouts/TSection.vue';
+import { useBuilder } from '@/stores/store.js';
 
 const props = defineProps({});
+const builder = useBuilder();
 
-const state = reactive({
+/*const state = reactive({
   sectionOrder: 1,
   sectionId: 1,
   blockId: 1,
@@ -91,7 +93,7 @@ function createBlocks(section) {
       order: order,
       components: [],
       sectionId: state.sectionId,
-      componentOrder: 1
+      componentOrder: 1,
     });
     order++;
     state.blockId++;
@@ -103,16 +105,17 @@ function createBlocks(section) {
 function addComponent(componentName) {
   state.currentBlock.components.push({
     name: componentName,
-    order: state.currentBlock.componentOrder
+    order: state.currentBlock.componentOrder,
   });
 
-  state.currentBlock.componentOrder++
+  state.currentBlock.componentOrder++;
 }
 
 function showModalComponent(block) {
   state.currentBlock = block;
   state.showModalComponent = true;
 }
+*/
 </script>
 
 <style scoped>

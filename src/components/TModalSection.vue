@@ -1,5 +1,9 @@
 <template>
-  <TModal :show="props.show" @closeModal="$emit('closeModal')" to="#canvas">
+  <TModal
+    :show="builder.showModalSection"
+    @closeModal="builder.showModalSection = false"
+    to="#canvas"
+  >
     <template #header>
       <h3>Choose The Layout</h3>
     </template>
@@ -116,6 +120,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import TModal from './TModal.vue';
+import { useBuilder } from '@/stores/store.js';
 
 const emit = defineEmits(['closeModal', 'sectionChosen']);
 
@@ -128,10 +133,12 @@ const props = defineProps({
   to: String,
 });
 
+const builder = useBuilder();
+
 const section = reactive({
   type: 'OneBlockSection',
-  numberOfBlock: 1
-})
+  numberOfBlock: 1,
+});
 
 function chooseSelected(sectionType, blockNumber) {
   section.type = sectionType;
@@ -139,6 +146,19 @@ function chooseSelected(sectionType, blockNumber) {
 }
 
 function submitSectionChoice() {
+  console.log(this);
+  builder.sections.push({
+    id: builder.sectionId,
+    order: builder.sectionOrder,
+    type: section.type,
+    numberOfBlock: section.numberOfBlock,
+    options: {},
+    blocks: createBlocks(section),
+  });
+
+  builder.sectionOrder++;
+  builder.sectionId++;
+
   emit('sectionChosen', section);
   emit('closeModal');
 }

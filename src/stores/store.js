@@ -33,6 +33,5 @@ export const useBuilder = defineStore('builer', () => {
     options,
     showModalComponent,
     showModalSection,
-    store,
   };
 });
