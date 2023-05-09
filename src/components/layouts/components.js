@@ -1,3 +1,5 @@
 import Test from './Test.vue';
 
-export const components = [Test];
+export const components = {
+  Test: Test,
+};

@@ -21,15 +21,13 @@
           rounded
         "
         :class="[
-          componentName == 'component1'
+          componentName == 'Test'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('component1')"
+        @click="chooseSelected('Test')"
       >
-        <div class="w-10 h-8 border-2 border-slate-600 rounded">
-          component 1
-        </div>
+        <div class="w-10 h-8 border-2 border-slate-600 rounded">Test</div>
       </div>
 
       <div
@@ -106,7 +104,7 @@ const props = defineProps({
   to: String,
 });
 
-const componentName = ref('component1');
+const componentName = ref('Test');
 
 function chooseSelected(chosen) {
   componentName.value = chosen;

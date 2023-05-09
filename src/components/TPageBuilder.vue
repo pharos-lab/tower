@@ -2,7 +2,6 @@
   <section class="t-page-builder flex">
     <div class="canvas bg-slate-100 grow relative" id="canvas">
       <div class="t-sections">
-        <!-- <component :is="sections[section.type]"></component>-->
         <TSection
           v-for="section in builder.sections"
           :key="section.id"

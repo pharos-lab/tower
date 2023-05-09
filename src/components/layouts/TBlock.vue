@@ -1,6 +1,9 @@
 <template>
   <div class="t-block border border-green-500 h-full">
-    <component is="vue:Test" v-for="component in block.components"></component>
+    <component
+      :is="components[component.name]"
+      v-for="component in block.components"
+    ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
       <button
@@ -23,7 +26,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useBuilder } from '@/stores/store.js';
-import Test from './Test.vue';
+import { components } from './components.js';
 
 const builder = useBuilder();
 
