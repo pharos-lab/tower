@@ -3,6 +3,9 @@
     <component
       :is="components[component.name]"
       v-for="component in block.components"
+      :data="{
+        
+      }"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
