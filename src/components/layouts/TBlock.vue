@@ -3,12 +3,11 @@
     <component
       :is="components[component.name]"
       v-for="component in block.components"
-      :data="{}"
-      v-model="text"
+      v-model:data="data"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
-      {{ text }}
+      {{ data }}
       <button
         class="
           t-add-section-action
@@ -37,7 +36,7 @@ const props = defineProps({
   block: Object,
 });
 
-const text = ref();
+const data = ref();
 
 function handleModalComponent() {
   builder.currentBlock = props.block;
