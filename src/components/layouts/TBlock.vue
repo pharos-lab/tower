@@ -3,7 +3,7 @@
     <component
       :is="components[component.name]"
       v-for="component in block.components"
-      v-model:data="data"
+      v-model:data="component.data"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">

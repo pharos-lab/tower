@@ -114,6 +114,7 @@ function submitComponentChoice() {
   builder.currentBlock.components.push({
     name: componentName.value,
     order: builder.currentBlock.componentOrder,
+    data: {},
   });
 
   builder.currentBlock.componentOrder++;

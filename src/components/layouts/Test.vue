@@ -26,15 +26,6 @@ import { useBuilder } from '@/stores/store.js';
 
 const builder = useBuilder();
 
-const props = defineProps({
-  data: {
-    default: {
-      base: 'default text',
-      second: 'second text',
-    },
-  },
-});
-
 const data = ref({
   base: 'default text1',
   second: 'second text1',
