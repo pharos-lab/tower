@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, reactive } from 'vue';
 
-export const useBuilder = defineStore('builer', () => {
+export const useBuilder = defineStore('builder', () => {
   const store = reactive({
     sectionOrder: 1,
     sectionId: 1,

@@ -3,12 +3,12 @@
     <component
       :is="components[component.name]"
       v-for="component in block.components"
-      :data="{
-        
-      }"
+      :data="{}"
+      v-model="text"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
+      {{ text }}
       <button
         class="
           t-add-section-action
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
 import { components } from './components.js';
 
@@ -36,6 +36,8 @@ const builder = useBuilder();
 const props = defineProps({
   block: Object,
 });
+
+const text = ref();
 
 function handleModalComponent() {
   builder.currentBlock = props.block;
