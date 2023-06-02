@@ -1,37 +1,40 @@
 <template>
   <section class="t-page-builder flex">
-    <div class="canvas bg-slate-100 grow relative" id="canvas">
-      <div class="t-sections">
-        <TSection
-          v-for="section in builder.sections"
-          :key="section.id"
-          :section="section"
-        ></TSection>
-      </div>
+    <div class="canvas bg-slate-100 grow relative flex h-screen" id="canvas">
+      <div class="main grow overflow-auto">
+        <div class="t-sections">
+          <TSection
+            v-for="section in builder.sections"
+            :key="section.id"
+            :section="section"
+          ></TSection>
+        </div>
 
-      <div class="t-add-section flex justify-center items-center h-40">
-        <button
-          class="
-            t-add-section-action
-            w-48
-            h-20
-            pointer-cursor
-            border-2 border-dashed border-sky-500
-            bg-sky-50
-          "
-          @click="builder.showModalSection = true"
+        <div class="t-add-section flex justify-center items-center h-40">
+          <button
+            class="
+              t-add-section-action
+              w-48
+              h-20
+              pointer-cursor
+              border-2 border-dashed border-sky-500
+              bg-sky-50
+            "
+            @click="builder.showModalSection = true"
+          >
+            Add section
+          </button>
+        </div>
+
+        <pre>
+      {{ builder }}
+      </pre
         >
-          Add section
-        </button>
       </div>
-
+      <div class="sidebar w-64 border border-orange-700 right-0"></div>
       <TModalSection :show="builder.showModalSection" />
 
       <TModalComponent :show="builder.showModalComponent" />
-
-      <pre>
-      {{ builder }}
-      </pre>
     </div>
   </section>
 </template>

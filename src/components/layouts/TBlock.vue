@@ -28,7 +28,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
-import { components } from './components.js';
+import { components } from '@/components/components.js';
 
 const builder = useBuilder();
 

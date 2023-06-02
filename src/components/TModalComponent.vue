@@ -42,15 +42,13 @@
           rounded
         "
         :class="[
-          componentName == 'component2'
+          componentName == 'TButton'
             ? 'bg-sky-200 border-sky-600'
             : 'bg-slate-200',
         ]"
-        @click="chooseSelected('component2')"
+        @click="chooseSelected('TButton')"
       >
-        <div class="w-10 h-8 border-2 border-slate-600 rounded">
-          Component 2
-        </div>
+        <div class="">Button</div>
       </div>
 
       <div

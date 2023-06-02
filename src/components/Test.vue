@@ -22,9 +22,6 @@
 
 <script setup>
 import { computed, ref, onUpdated } from 'vue';
-import { useBuilder } from '@/stores/store.js';
-
-const builder = useBuilder();
 
 const props = defineProps({
   data: Object,
