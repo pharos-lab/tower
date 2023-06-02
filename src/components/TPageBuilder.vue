@@ -3,11 +3,47 @@
     <div class="canvas bg-slate-100 grow relative flex h-screen" id="canvas">
       <div class="main grow overflow-auto">
         <div class="t-sections">
-          <TSection
+          <!--<TSection
             v-for="section in builder.sections"
             :key="section.id"
             :section="section"
-          ></TSection>
+          ></TSection>-->
+
+          <div
+            class="t-section border border-red-500 h-96 grid"
+            :class="gridClass(section.numberOfBlocks)"
+            v-for="section in builder.sections"
+            :key="section.id"
+          >
+            <div
+              class="t-block border border-green-500 h-full"
+              v-for="(block, index) in section.blocks"
+              :key="block.id"
+            >
+              <component
+                :is="components[component.name]"
+                v-for="component in block.components"
+                v-model:data="component.data"
+              ></component>
+
+              <div class="t-add-block flex justify-center items-center h-24">
+                {{ data }}
+                <button
+                  class="
+                    t-add-section-action
+                    w-36
+                    h-12
+                    pointer-cursor
+                    border-2 border-dashed border-emerald-500
+                    bg-emerald-50
+                  "
+                  @click="handleModalComponent"
+                >
+                  Add Component
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="t-add-section flex justify-center items-center h-40">
@@ -40,7 +76,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import TModalComponent from './TModalComponent.vue';
@@ -49,6 +85,25 @@ import { useBuilder } from '@/stores/store.js';
 
 const props = defineProps({});
 const builder = useBuilder();
+const data = ref();
+
+function handleModalComponent() {
+  builder.currentBlock = props.block;
+  builder.showModalComponent = true;
+}
+
+const gridClass = (nb) => {
+  switch (nb) {
+    case 1:
+      return 'grid-cols-1';
+    case 2:
+      return 'grid-cols-2';
+    case 3:
+      return 'grid-cols-3';
+    case 4:
+      return 'grid-cols-4';
+  }
+};
 </script>
 
 <style scoped>

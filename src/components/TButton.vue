@@ -54,10 +54,29 @@ const props = defineProps({
 const emit = defineEmits(['update:data']);
 
 const data = ref({
-  base: 'Change Me',
+  slots: {
+    base: 'Change Me',
+  },
+  props: {},
 });
 
 const base = ref();
+
+onUpdated(() => {
+  const selection = window.getSelection();
+  const range = document.createRange();
+  selection.removeAllRanges();
+  range.selectNodeContents(base.value);
+  range.collapse(false);
+  selection.addRange(range);
+  //base.value.focus();
+});
+
+function handleChange(slot, event) {
+  data.value[slot] = event.target.innerText;
+
+  emit('update:data', data.value);
+}
 
 const tag = computed(() => {
   return props.href ? 'a' : 'button';
@@ -82,22 +101,6 @@ const focusClass = computed(() => {
     ? useFocusSwitch(props.color, props.mode)
     : 'focus:outline-none';
 });
-
-onUpdated(() => {
-  const selection = window.getSelection();
-  const range = document.createRange();
-  selection.removeAllRanges();
-  range.selectNodeContents(base.value);
-  range.collapse(false);
-  selection.addRange(range);
-  //base.value.focus();
-});
-
-function handleChange(slot, event) {
-  data.value[slot] = event.target.innerText;
-
-  emit('update:data', data.value);
-}
 </script>
 
 <style scoped></style>
