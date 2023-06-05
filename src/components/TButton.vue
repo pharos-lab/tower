@@ -73,7 +73,7 @@ onUpdated(() => {
 });
 
 function handleChange(slot, event) {
-  data.value[slot] = event.target.innerText;
+  data.value.slots[slot] = event.target.innerText;
 
   emit('update:data', data.value);
 }

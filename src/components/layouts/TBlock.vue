@@ -4,6 +4,7 @@
       :is="components[component.name]"
       v-for="component in block.components"
       v-model:data="component.data"
+      @click="openSettingComponent(component)"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
@@ -41,6 +42,11 @@ const data = ref();
 function handleModalComponent() {
   builder.currentBlock = props.block;
   builder.showModalComponent = true;
+}
+
+function openSettingComponent(component) {
+  builder.currentComponent = component;
+  builder.showSettingComponent = true;
 }
 </script>
 

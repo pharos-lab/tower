@@ -3,13 +3,13 @@
     <div class="canvas bg-slate-100 grow relative flex h-screen" id="canvas">
       <div class="main grow overflow-auto">
         <div class="t-sections">
-          <!--<TSection
+          <TSection
             v-for="section in builder.sections"
             :key="section.id"
             :section="section"
-          ></TSection>-->
+          ></TSection>
 
-          <div
+          <!--<div
             class="t-section border border-red-500 h-96 grid"
             :class="gridClass(section.numberOfBlocks)"
             v-for="section in builder.sections"
@@ -24,6 +24,7 @@
                 :is="components[component.name]"
                 v-for="component in block.components"
                 v-model:data="component.data"
+                @click="openSettingComponent(component)"
               ></component>
 
               <div class="t-add-block flex justify-center items-center h-24">
@@ -43,7 +44,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
 
         <div class="t-add-section flex justify-center items-center h-40">
@@ -67,7 +68,14 @@
       </pre
         >
       </div>
-      <div class="sidebar w-64 border border-orange-700 right-0"></div>
+
+      <div
+        class="sidebar w-64 border border-orange-700 right-0"
+        v-show="builder.showSettingComponent"
+      >
+        <pre>{{ builder.currentComponent }}</pre>
+      </div>
+
       <TModalSection :show="builder.showModalSection" />
 
       <TModalComponent :show="builder.showModalComponent" />
@@ -81,30 +89,14 @@ import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import TModalComponent from './TModalComponent.vue';
 import TSection from './layouts/TSection.vue';
-import { components } from '@/components/components.js';
 import { useBuilder } from '@/stores/store.js';
 
-const props = defineProps({});
 const builder = useBuilder();
-const data = ref();
 
 function handleModalComponent(block) {
   builder.currentBlock = block;
   builder.showModalComponent = true;
 }
-
-const gridClass = (nb) => {
-  switch (nb) {
-    case 1:
-      return 'grid-cols-1';
-    case 2:
-      return 'grid-cols-2';
-    case 3:
-      return 'grid-cols-3';
-    case 4:
-      return 'grid-cols-4';
-  }
-};
 </script>
 
 <style scoped>
