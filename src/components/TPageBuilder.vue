@@ -37,7 +37,7 @@
                     border-2 border-dashed border-emerald-500
                     bg-emerald-50
                   "
-                  @click="handleModalComponent"
+                  @click="handleModalComponent(block)"
                 >
                   Add Component
                 </button>
@@ -81,14 +81,15 @@ import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import TModalComponent from './TModalComponent.vue';
 import TSection from './layouts/TSection.vue';
+import { components } from '@/components/components.js';
 import { useBuilder } from '@/stores/store.js';
 
 const props = defineProps({});
 const builder = useBuilder();
 const data = ref();
 
-function handleModalComponent() {
-  builder.currentBlock = props.block;
+function handleModalComponent(block) {
+  builder.currentBlock = block;
   builder.showModalComponent = true;
 }
 
