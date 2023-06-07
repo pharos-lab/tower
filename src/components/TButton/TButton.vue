@@ -4,20 +4,16 @@
     :href="props.href ?? null"
     class="l-button py-2 px-4 font-semibold focus:ring-1"
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
-    contenteditable
-    @input="handleChange('base', $event)"
-    :value="data.base"
-    ref="base"
     ><slot>Click me</slot></component
   >
 </template>
 
 <script setup>
 import { computed, ref, onUpdated } from 'vue';
-import { useRoundedSwitch } from './composables/roundedSwitch.js';
-import { useColorSwitch } from './composables/colorSwitch.js';
-import { useHoverSwitch } from './composables/hoverSwitch.js';
-import { useFocusSwitch } from './composables/focusSwitch.js';
+import { useRoundedSwitch } from '@/components/composables/roundedSwitch.js';
+import { useColorSwitch } from '@/components/composables/colorSwitch.js';
+import { useHoverSwitch } from '@/components/composables/hoverSwitch.js';
+import { useFocusSwitch } from '@/components/composables/focusSwitch.js';
 
 const props = defineProps({
   data: Object,
@@ -50,33 +46,6 @@ const props = defineProps({
   focus: String,
   href: String,
 });
-
-const emit = defineEmits(['update:data']);
-
-const data = ref({
-  slots: {
-    base: 'Change Me',
-  },
-  props: {},
-});
-
-const base = ref();
-
-onUpdated(() => {
-  const selection = window.getSelection();
-  const range = document.createRange();
-  selection.removeAllRanges();
-  range.selectNodeContents(base.value);
-  range.collapse(false);
-  selection.addRange(range);
-  //base.value.focus();
-});
-
-function handleChange(slot, event) {
-  data.value.slots[slot] = event.target.innerText;
-
-  emit('update:data', data.value);
-}
 
 const tag = computed(() => {
   return props.href ? 'a' : 'button';

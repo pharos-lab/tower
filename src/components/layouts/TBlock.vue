@@ -1,7 +1,7 @@
 <template>
   <div class="t-block border border-green-500 h-full">
     <component
-      :is="components[component.name]"
+      :is="componentsBuild[component.name]"
       v-for="component in block.components"
       v-model:data="component.data"
       @click="openSettingComponent(component)"
@@ -29,7 +29,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
-import { components } from '@/components/components.js';
+import { componentsBuild } from '@/components/components.js';
 
 const builder = useBuilder();
 
@@ -46,6 +46,12 @@ function handleModalComponent() {
 
 function openSettingComponent(component) {
   builder.currentComponent = component;
+  import(`@/components/${component.name}/${component.name}Specs.js`).then(
+    (module) => {
+      console.log(module.props);
+      builder.currentComponent.data.props = props;
+    }
+  );
   builder.showSettingComponent = true;
 }
 </script>

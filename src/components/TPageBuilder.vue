@@ -8,43 +8,6 @@
             :key="section.id"
             :section="section"
           ></TSection>
-
-          <!--<div
-            class="t-section border border-red-500 h-96 grid"
-            :class="gridClass(section.numberOfBlocks)"
-            v-for="section in builder.sections"
-            :key="section.id"
-          >
-            <div
-              class="t-block border border-green-500 h-full"
-              v-for="(block, index) in section.blocks"
-              :key="block.id"
-            >
-              <component
-                :is="components[component.name]"
-                v-for="component in block.components"
-                v-model:data="component.data"
-                @click="openSettingComponent(component)"
-              ></component>
-
-              <div class="t-add-block flex justify-center items-center h-24">
-                {{ data }}
-                <button
-                  class="
-                    t-add-section-action
-                    w-36
-                    h-12
-                    pointer-cursor
-                    border-2 border-dashed border-emerald-500
-                    bg-emerald-50
-                  "
-                  @click="handleModalComponent(block)"
-                >
-                  Add Component
-                </button>
-              </div>
-            </div>
-          </div>-->
         </div>
 
         <div class="t-add-section flex justify-center items-center h-40">
@@ -74,6 +37,7 @@
         v-show="builder.showSettingComponent"
       >
         <pre>{{ builder.currentComponent }}</pre>
+        <pre>{{ specs }}</pre>
       </div>
 
       <TModalSection :show="builder.showModalSection" />
