@@ -32,7 +32,7 @@
         >
       </div>
 
-      <TSettingSidebar :builder="builder"></TSettingSidebar>
+      <TSettingSidebar v-show="builder.showSettingComponent"></TSettingSidebar>
 
       <TModalSection :show="builder.showModalSection" />
 

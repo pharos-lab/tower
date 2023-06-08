@@ -15,10 +15,11 @@ export const props = {
   hover: {
     type: 'Boolean',
     default: true,
+    valid: ['true', 'false'],
   },
   focus: {
     type: 'String',
-    valid: ['gray', 'red', 'orange', 'yellow', 'blue', ''],
+    valid: ['gray', 'red', 'orange', 'yellow', 'blue', 'inherit'],
   },
   href: {
     type: 'String',

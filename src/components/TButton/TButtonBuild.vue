@@ -6,8 +6,9 @@
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
     contenteditable
     @input="handleChange('base', $event)"
-    :value="data.base"
+    :value="data.slots.base"
     ref="base"
+    v-bind="data.slots.props"
     ><slot>Click me</slot></component
   >
 </template>
