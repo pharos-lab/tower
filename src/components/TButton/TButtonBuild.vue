@@ -55,9 +55,9 @@ const emit = defineEmits(['update:data']);
 
 const data = ref({
   slots: {
-    base: 'Change Me',
+    base: '',
   },
-  props: {},
+  props: props.data,
 });
 
 const base = ref();

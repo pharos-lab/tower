@@ -8,7 +8,6 @@
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">
-      {{ data }}
       <button
         class="
           t-add-section-action
@@ -37,8 +36,6 @@ const props = defineProps({
   block: Object,
 });
 
-const data = ref();
-
 function handleModalComponent() {
   builder.currentBlock = props.block;
   builder.showModalComponent = true;
@@ -46,12 +43,6 @@ function handleModalComponent() {
 
 function openSettingComponent(component) {
   builder.currentComponent = component;
-  import(`@/components/${component.name}/${component.name}Specs.js`).then(
-    (module) => {
-      console.log(module.props);
-      builder.currentComponent.data.props = props;
-    }
-  );
   builder.showSettingComponent = true;
 }
 </script>

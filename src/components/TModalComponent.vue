@@ -109,13 +109,21 @@ function chooseSelected(chosen) {
 }
 
 function submitComponentChoice() {
-  builder.currentBlock.components.push({
-    name: componentName.value,
-    order: builder.currentBlock.componentOrder,
-    data: {},
-  });
+  let componentProps;
+  console.log(componentName.value);
+  import(
+    `@/components/${componentName.value}/${componentName.value}Specs.js`
+  ).then((module) => {
+    builder.currentBlock.components.push({
+      name: componentName.value,
+      order: builder.currentBlock.componentOrder,
+      data: {
+        props: module.props,
+      },
+    });
 
-  builder.currentBlock.componentOrder++;
-  builder.showModalComponent = false;
+    builder.currentBlock.componentOrder++;
+    builder.showModalComponent = false;
+  });
 }
 </script>
