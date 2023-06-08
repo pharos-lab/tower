@@ -32,13 +32,7 @@
         >
       </div>
 
-      <div
-        class="sidebar w-64 border border-orange-700 right-0"
-        v-show="builder.showSettingComponent"
-      >
-        <pre>{{ builder.currentComponent }}</pre>
-        <pre>{{ specs }}</pre>
-      </div>
+      <TSettingSidebar :builder="builder"></TSettingSidebar>
 
       <TModalSection :show="builder.showModalSection" />
 
@@ -53,6 +47,7 @@ import TSidebar from './TSidebar.vue';
 import TModalSection from './TModalSection.vue';
 import TModalComponent from './TModalComponent.vue';
 import TSection from './layouts/TSection.vue';
+import TSettingSidebar from './TSettingSidebar.vue';
 import { useBuilder } from '@/stores/store.js';
 
 const builder = useBuilder();

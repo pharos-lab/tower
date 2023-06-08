@@ -57,7 +57,8 @@ const data = ref({
   slots: {
     base: '',
   },
-  props: props.data,
+  props: props.data.props,
+  specs: props.data.specs,
 });
 
 const base = ref();

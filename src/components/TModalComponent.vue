@@ -110,7 +110,6 @@ function chooseSelected(chosen) {
 
 function submitComponentChoice() {
   let componentProps;
-  console.log(componentName.value);
   import(
     `@/components/${componentName.value}/${componentName.value}Specs.js`
   ).then((module) => {
@@ -118,7 +117,7 @@ function submitComponentChoice() {
       name: componentName.value,
       order: builder.currentBlock.componentOrder,
       data: {
-        props: module.props,
+        specs: module.props,
       },
     });
 
