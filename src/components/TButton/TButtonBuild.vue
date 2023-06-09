@@ -6,10 +6,7 @@
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
     contenteditable
     @input="handleChange('base', $event)"
-    :value="data.slots.base"
-    ref="base"
-    v-bind="data.slots.props"
-    ><slot>Click me</slot></component
+    >{{ props.data.slots?.base ?? 'change me' }}</component
   >
 </template>
 
@@ -60,18 +57,6 @@ const data = ref({
   },
   props: props.data.props,
   specs: props.data.specs,
-});
-
-const base = ref();
-
-onUpdated(() => {
-  const selection = window.getSelection();
-  const range = document.createRange();
-  selection.removeAllRanges();
-  range.selectNodeContents(base.value);
-  range.collapse(false);
-  selection.addRange(range);
-  //base.value.focus();
 });
 
 function handleChange(slot, event) {

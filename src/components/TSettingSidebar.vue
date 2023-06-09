@@ -15,12 +15,22 @@
           :id="propName"
           v-if="prop.hasOwnProperty('valid')"
         >
-          <option :value="value" v-for="value in prop.valid">
+          <option value="">Select a {{ propName }}</option>
+          <option
+            :value="value"
+            v-for="value in prop.valid"
+            :selected="builder.currrentComponent?.data.props[propName] == value"
+          >
             {{ value }}
           </option>
         </select>
 
-        <input type="text" value="" :name="propName" v-else />
+        <input
+          type="text"
+          :name="propName"
+          v-else
+          @input="handleChange(propName, $event)"
+        />
       </div>
     </div>
 

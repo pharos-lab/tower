@@ -5,6 +5,7 @@
       v-for="component in block.components"
       v-model:data="component.data"
       @click="openSettingComponent(component)"
+      v-bind="component.data.props"
     ></component>
 
     <div class="t-add-block flex justify-center items-center h-24">

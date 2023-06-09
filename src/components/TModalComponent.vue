@@ -117,8 +117,8 @@ function submitComponentChoice() {
       name: componentName.value,
       order: builder.currentBlock.componentOrder,
       data: {
-        specs: module.props,
         props: {},
+        specs: module.props,
       },
     });
 
