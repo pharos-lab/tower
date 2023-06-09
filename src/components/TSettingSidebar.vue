@@ -8,7 +8,26 @@
         class="t-component-prop"
         v-for="(prop, propName) in builder.currentComponent?.data.specs"
       >
-        <label :for="propName">{{ propName }}: </label>
+        <label for="">{{ propName }}: </label>
+
+        <select
+          v-model="builder.currentComponent.data.props[propName]"
+          v-if="prop.hasOwnProperty('valid')"
+        >
+          <option :value="placeholder" disabled>Select a {{ propName }}</option>
+          <option
+            v-for="value in prop.valid"
+            :value="value"
+            :selected="
+              builder.currrentComponent?.data.props[propName] == value ||
+              prop.default
+            "
+          >
+            {{ value }}
+          </option>
+        </select>
+
+        <!--<label :for="propName">{{ propName }}: </label>
         <select
           @input="handleChange(propName, $event)"
           :name="propName"
@@ -30,7 +49,7 @@
           :name="propName"
           v-else
           @input="handleChange(propName, $event)"
-        />
+        />-->
       </div>
     </div>
 
@@ -47,13 +66,6 @@ const builder = useBuilder();
 function handleChange(name, event) {
   builder.currentComponent.data.props[name] = event.target.value;
 }
-
-onMounted(() => {
-  console.log('mounted');
-});
-onUpdated(() => {
-  console.log('updated');
-});
 </script>
 
 <style scoped></style>
