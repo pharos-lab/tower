@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUpdated } from 'vue';
 import { useBuilder } from '@/stores/store.js';
 
 const builder = useBuilder();
@@ -47,6 +47,13 @@ const builder = useBuilder();
 function handleChange(name, event) {
   builder.currentComponent.data.props[name] = event.target.value;
 }
+
+onMounted(() => {
+  console.log('mounted');
+});
+onUpdated(() => {
+  console.log('updated');
+});
 </script>
 
 <style scoped></style>

@@ -6,6 +6,7 @@
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
     contenteditable
     @input="handleChange('base', $event)"
+    ref="base"
     >{{ props.data.slots?.base ?? 'change me' }}</component
   >
 </template>
@@ -59,9 +60,25 @@ const data = ref({
   specs: props.data.specs,
 });
 
+const base = ref();
+const innerChange = ref(false);
+
+onUpdated(() => {
+  if (innerChange.value) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents(base.value);
+    range.collapse(false);
+    selection.addRange(range);
+    //base.value.focus();
+  }
+  innerChange.value = false;
+});
+
 function handleChange(slot, event) {
   data.value.slots[slot] = event.target.innerText;
-
+  innerChange.value = true;
   emit('update:data', data.value);
 }
 
