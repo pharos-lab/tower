@@ -118,7 +118,11 @@ function submitComponentChoice() {
       order: builder.currentBlock.componentOrder,
       data: {
         props: {},
-        specs: module.props,
+        slots: {},
+        specs: {
+          props: module.data.props,
+          slots: module.data.slots,
+        },
       },
     });
 

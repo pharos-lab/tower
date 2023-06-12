@@ -1,7 +1,7 @@
 <template>
   <div class="t-block border border-green-500 h-full">
     <component
-      :is="componentsBuild[component.name]"
+      :is="components[component.name]"
       v-for="component in block.components"
       v-model:data="component.data"
       @click="openSettingComponent(component)"
@@ -29,7 +29,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
-import { componentsBuild } from '@/components/components.js';
+import { components } from '@/components/components.js';
 
 const builder = useBuilder();
 

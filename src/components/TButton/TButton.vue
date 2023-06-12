@@ -4,7 +4,7 @@
     :href="props.href ?? null"
     class="l-button py-2 px-4 font-semibold focus:ring-1"
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
-    ><slot>Click me</slot></component
+    ><slot>{{ props.data.slots?.base ?? 'change me' }}</slot></component
   >
 </template>
 
@@ -40,8 +40,12 @@ const props = defineProps({
     },
   },
   hover: {
-    type: Boolean,
-    default: true,
+    type: String,
+    default: 'true',
+    validator(value) {
+      // The value must match one of these strings
+      return ['true', 'false'].includes(value);
+    },
   },
   focus: String,
   href: String,
@@ -56,7 +60,7 @@ const colorClass = computed(() => {
 });
 
 const hoverClass = computed(() => {
-  return props.hover ? useHoverSwitch(props.color, props.mode) : '';
+  return props.hover == 'true' ? useHoverSwitch(props.color, props.mode) : '';
 });
 
 const roundedClass = computed(() => {

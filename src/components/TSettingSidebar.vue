@@ -3,10 +3,23 @@
     class="t-setting-component-sidebar w-64 border border-orange-700 right-0"
   >
     <h3 class="text-center my-4">Change the component</h3>
+
+    <div class="t-component-slots my-4">
+      <h4 class="my-2">Edit content</h4>
+      <div
+        class="t-slot"
+        v-for="(slot, slotName) in builder.currentComponent?.data.specs.slots"
+      >
+        <label :for="slot.label">{{ slot.label }}: </label>
+        <input :type="slot.type" @input="handleSlotChange(slotName, $event)" />
+      </div>
+    </div>
+
     <div class="t-component-props">
+      <h4 class="my-2">Edit the component style</h4>
       <div
         class="t-component-prop"
-        v-for="(prop, propName) in builder.currentComponent?.data.specs"
+        v-for="(prop, propName) in builder.currentComponent?.data.specs.props"
       >
         <label for="">{{ propName }}: </label>
 
@@ -27,29 +40,12 @@
           </option>
         </select>
 
-        <!--<label :for="propName">{{ propName }}: </label>
-        <select
-          @input="handleChange(propName, $event)"
-          :name="propName"
-          :id="propName"
-          v-if="prop.hasOwnProperty('valid')"
-        >
-          <option value="">Select a {{ propName }}</option>
-          <option
-            :value="value"
-            v-for="value in prop.valid"
-            :selected="builder.currrentComponent?.data.props[propName] == value"
-          >
-            {{ value }}
-          </option>
-        </select>
-
         <input
           type="text"
           :name="propName"
           v-else
-          @input="handleChange(propName, $event)"
-        />-->
+          @input="handlePropChange(propName, $event)"
+        />
       </div>
     </div>
 
@@ -63,8 +59,12 @@ import { useBuilder } from '@/stores/store.js';
 
 const builder = useBuilder();
 
-function handleChange(name, event) {
+function handlePropChange(name, event) {
   builder.currentComponent.data.props[name] = event.target.value;
+}
+
+function handleSlotChange(slot, event) {
+  builder.currentComponent.data.slots[slot] = event.target.value;
 }
 </script>
 
