@@ -109,25 +109,20 @@ function chooseSelected(chosen) {
 }
 
 function submitComponentChoice() {
-  let componentProps;
-  import(
-    `@/components/${componentName.value}/${componentName.value}Specs.js`
-  ).then((module) => {
-    builder.currentBlock.components.push({
-      name: componentName.value,
-      order: builder.currentBlock.componentOrder,
-      data: {
-        props: {},
-        slots: {},
-        specs: {
-          props: module.data.props,
-          slots: module.data.slots,
-        },
-      },
-    });
-
-    builder.currentBlock.componentOrder++;
-    builder.showModalComponent = false;
+  builder.currentBlock.components.push({
+    name: componentName.value,
+    order: builder.currentBlock.componentOrder,
+    data: {
+      props: {},
+      slots: {},
+      /*specs: {
+          props: module.specs.props,
+          slots: module.specs.slots,
+        },*/
+    },
   });
+
+  builder.currentBlock.componentOrder++;
+  builder.showModalComponent = false;
 }
 </script>

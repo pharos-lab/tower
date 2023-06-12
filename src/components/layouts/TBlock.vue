@@ -27,7 +27,6 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
 import { components } from '@/components/components.js';
 
@@ -44,6 +43,11 @@ function handleModalComponent() {
 
 function openSettingComponent(component) {
   builder.currentComponent = component;
+  import(`@/components/${component.name}/${component.name}Specs.js`).then(
+    (module) => {
+      builder.currentSpecs = module.specs;
+    }
+  );
   builder.showSettingComponent = true;
 }
 </script>

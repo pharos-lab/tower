@@ -8,7 +8,7 @@
       <h4 class="my-2">Edit content</h4>
       <div
         class="t-slot"
-        v-for="(slot, slotName) in builder.currentComponent?.data.specs.slots"
+        v-for="(slot, slotName) in builder.currentSpecs?.slots"
       >
         <label :for="slot.label">{{ slot.label }}: </label>
         <input :type="slot.type" @input="handleSlotChange(slotName, $event)" />
@@ -19,7 +19,7 @@
       <h4 class="my-2">Edit the component style</h4>
       <div
         class="t-component-prop"
-        v-for="(prop, propName) in builder.currentComponent?.data.specs.props"
+        v-for="(prop, propName) in builder.currentSpecs?.props"
       >
         <label for="">{{ propName }}: </label>
 
@@ -54,7 +54,6 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated } from 'vue';
 import { useBuilder } from '@/stores/store.js';
 
 const builder = useBuilder();

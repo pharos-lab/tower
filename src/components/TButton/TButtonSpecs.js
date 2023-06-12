@@ -1,4 +1,4 @@
-export const data = {
+export const specs = {
   props: {
     color: {
       type: 'String',
