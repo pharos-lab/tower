@@ -2,7 +2,7 @@
   <div
     class="
       t-setting-component-sidebar
-      w-1/2
+      w-80
       border border-orange-700
       right-0
       bg-white
@@ -13,14 +13,14 @@
     <TAccordion color="gray" mode="fill">
       <TAccordionItem label="content" class="bg-white">
         <div
-          class="t-component-slot flex"
+          class="t-component-slot flex gap-3"
           v-for="(slot, slotName) in builder.currentSpecs?.slots"
         >
-          <label :for="slot.label" class="w-20">{{ slot.label }}: </label>
+          <label :for="slot.label" class="">{{ slot.label }}: </label>
           <input
             :type="slot.type"
             v-model="builder.currentComponent.data.slots[slotName]"
-            class="rounded grow"
+            class="rounded-sm grow"
           />
         </div>
       </TAccordionItem>
@@ -30,6 +30,12 @@
           v-for="(prop, propName) in builder.currentSpecs?.props"
         >
           <label for="">{{ propName }}: </label>
+
+          <div class="flex gap-2">
+            <div class="grow" v-for="value in prop.valid">
+              {{ value }}
+            </div>
+          </div>
 
           <select
             v-model="builder.currentComponent.data.props[propName]"
