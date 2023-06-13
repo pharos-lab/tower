@@ -12,18 +12,35 @@
 
     <TAccordion color="gray" mode="fill">
       <TAccordionItem label="content" class="bg-white">
-        <div
-          class="t-component-slot flex gap-3"
-          v-for="(slot, slotName) in builder.currentSpecs?.slots"
-        >
-          <label :for="slot.label" class="">{{ slot.label }}: </label>
-          <input
-            :type="slot.type"
-            v-model="builder.currentComponent.data.slots[slotName]"
-            class="rounded-sm grow"
-          />
+        <div class="flex flex-col gap-3">
+          <div
+            class="t-component-slot flex flex-col gap-2"
+            v-for="(slot, slotName) in builder.currentSpecs?.slots"
+          >
+            <label :for="slot.label" class="">{{ slot.label }}: </label>
+            <textarea
+              v-model="builder.currentComponent.data.slots[slotName]"
+              placeholder="Edit me!"
+              class="rounded-sm grow p-2"
+              rows="1"
+            ></textarea>
+          </div>
+
+          <div
+            class="t-component-href flex flex-col gap-2"
+            v-if="builder.currentSpecs?.props.href"
+          >
+            <label for="href" class="">URL: </label>
+            <input
+              type="url"
+              v-model="builder.currentComponent.data.props.href"
+              class="rounded-sm grow p-2"
+              placeholder="www.exemple.com"
+            />
+          </div>
         </div>
       </TAccordionItem>
+
       <TAccordionItem label="props">
         <div
           class="t-component-prop"
