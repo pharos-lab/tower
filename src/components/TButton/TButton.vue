@@ -2,7 +2,7 @@
   <component
     :is="tag"
     :href="props.href ?? null"
-    class="l-button py-2 px-4 font-semibold focus:ring-1"
+    class="l-button py-2 px-4 font-semibold focus:ring-1 inline-block"
     :class="[colorClass, roundedClass, hoverClass, focusClass]"
     ><slot>{{ props.data.slots?.base ?? 'change me' }}</slot></component
   >
