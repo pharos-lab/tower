@@ -8,8 +8,32 @@
       bg-white
     "
   >
-    <h3 class="text-center my-4">Change the component</h3>
-
+    <div
+      class="
+        t-setting-component-nav
+        flex
+        border-b-2 border-slate-300
+        divide-x-2 divide-slate-300
+        text-slate-600
+      "
+    >
+      <div
+        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        title="Edit Content"
+      >
+        <PencilSquareIcon class="w-7 h-7" />
+      </div>
+      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+        <RectangleGroupIcon class="w-7 h-7" />
+      </div>
+      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+        <CubeIcon class="w-7 h-7" />
+      </div>
+      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+        <DocumentTextIcon class="w-7 h-7" />
+      </div>
+    </div>
+    <!--
     <TAccordion color="gray" mode="fill">
       <TAccordionItem label="content" class="bg-white">
         <div class="flex flex-col gap-3">
@@ -83,7 +107,7 @@
       </TAccordionItem>
       <TAccordionItem label="props"> ok </TAccordionItem>
       <TAccordionItem label="layouts"> ok </TAccordionItem>
-    </TAccordion>
+    </TAccordion>-->
 
     <pre>{{ builder.currentComponent }}</pre>
   </div>
@@ -93,6 +117,10 @@
 import { useBuilder } from '@/stores/store.js';
 import TAccordion from '@/components/TAccordion.vue';
 import TAccordionItem from '@/components/TAccordionItem.vue';
+import { PencilSquareIcon } from '@heroicons/vue/24/outline';
+import { CubeIcon } from '@heroicons/vue/24/outline';
+import { DocumentTextIcon } from '@heroicons/vue/24/outline';
+import { RectangleGroupIcon } from '@heroicons/vue/24/outline';
 
 const builder = useBuilder();
 
