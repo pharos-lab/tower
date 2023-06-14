@@ -12,18 +12,24 @@
       class="
         t-setting-component-nav
         flex
-        border-b-2 border-slate-300
         divide-x-2 divide-slate-300
         text-slate-600
+        shadow-md
       "
     >
       <div
         class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        :class="currentTab == 'TSidebarContent' ? 'bg-slate-200' : ''"
+        @click="handleTab(TSideBarContent)"
         title="Edit Content"
       >
         <PencilSquareIcon class="w-7 h-7" />
       </div>
-      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+      <div
+        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        :class="currentTab == 'TSidebarStyles' ? 'bg-slate-200' : ''"
+        @click="currentTab = 'TSidebarStyles'"
+      >
         <RectangleGroupIcon class="w-7 h-7" />
       </div>
       <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
@@ -33,6 +39,8 @@
         <DocumentTextIcon class="w-7 h-7" />
       </div>
     </div>
+
+    <component :is="tabs[currentTab]"></component>
     <!--
     <TAccordion color="gray" mode="fill">
       <TAccordionItem label="content" class="bg-white">
@@ -114,6 +122,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useBuilder } from '@/stores/store.js';
 import TAccordion from '@/components/TAccordion.vue';
 import TAccordionItem from '@/components/TAccordionItem.vue';
@@ -122,8 +131,21 @@ import { CubeIcon } from '@heroicons/vue/24/outline';
 import { DocumentTextIcon } from '@heroicons/vue/24/outline';
 import { RectangleGroupIcon } from '@heroicons/vue/24/outline';
 
-const builder = useBuilder();
+import TSidebarContent from '@/components/TSidebarContent.vue';
+import TSidebarStyles from '@/components/TSidebarStyles.vue';
+import TSidebarBoxing from '@/components/TSidebarBoxing.vue';
+import TSidebarPage from '@/components/TSidebarPage.vue';
 
+const builder = useBuilder();
+const currentTab = ref('TSidebarContent');
+
+const tabs = [TSidebarContent, TSidebarStyles, TSidebarBoxing, TSidebarPage];
+
+function handleTab(component) {
+  console.log(currentTab.value);
+  console.log(tabs);
+  console.log(tabs[currentTab]);
+}
 function handlePropChange(name, event) {
   builder.currentComponent.data.props[name] = event.target.value;
 }
