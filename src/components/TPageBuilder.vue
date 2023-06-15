@@ -1,7 +1,10 @@
 <template>
   <section class="t-page-builder flex">
-    <div class="canvas bg-slate-100 grow relative flex h-screen" id="canvas">
-      <div class="main grow overflow-auto">
+    <div
+      class="canvas bg-slate-100 grow relative flex h-screen overflow-hidden"
+      id="canvas"
+    >
+      <div class="main grow overflow-y-auto">
         <div class="t-sections">
           <TSection
             v-for="section in builder.sections"
@@ -27,9 +30,8 @@
         </div>
 
         <pre>
-      {{ builder }}
-      </pre
-        >
+          {{ builder }}
+        </pre>
       </div>
 
       <TSettingSidebar

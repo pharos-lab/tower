@@ -20,7 +20,7 @@
       <div
         class="grow flex justify-center items-center p-1 hover:bg-slate-200"
         :class="currentTab == 'TSidebarContent' ? 'bg-slate-200' : ''"
-        @click="handleTab(TSideBarContent)"
+        @click="handleTab('TSideBarContent')"
         title="Edit Content"
       >
         <PencilSquareIcon class="w-7 h-7" />
@@ -28,14 +28,22 @@
       <div
         class="grow flex justify-center items-center p-1 hover:bg-slate-200"
         :class="currentTab == 'TSidebarStyles' ? 'bg-slate-200' : ''"
-        @click="currentTab = 'TSidebarStyles'"
+        @click="handleTab('TSidebarStyles')"
       >
         <RectangleGroupIcon class="w-7 h-7" />
       </div>
-      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+      <div
+        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        :class="currentTab == 'TSidebarBoxing' ? 'bg-slate-200' : ''"
+        @click="handleTab('TSidebarBoxing')"
+      >
         <CubeIcon class="w-7 h-7" />
       </div>
-      <div class="grow flex justify-center items-center p-1 hover:bg-slate-200">
+      <div
+        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        :class="currentTab == 'TSidebarPage' ? 'bg-slate-200' : ''"
+        @click="handleTab('TSidebarPage')"
+      >
         <DocumentTextIcon class="w-7 h-7" />
       </div>
     </div>
@@ -139,13 +147,15 @@ import TSidebarPage from '@/components/TSidebarPage.vue';
 const builder = useBuilder();
 const currentTab = ref('TSidebarContent');
 
-const tabs = [TSidebarContent, TSidebarStyles, TSidebarBoxing, TSidebarPage];
+const tabs = { TSidebarContent, TSidebarStyles, TSidebarBoxing, TSidebarPage };
 
 function handleTab(component) {
-  console.log(currentTab.value);
-  console.log(tabs);
-  console.log(tabs[currentTab]);
+  console.log(currentTab);
+  console.log(tabs[currentTab.value]);
+  currentTab.value = component;
+  console.log(currentTab);
 }
+
 function handlePropChange(name, event) {
   builder.currentComponent.data.props[name] = event.target.value;
 }
