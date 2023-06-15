@@ -20,7 +20,7 @@
       <div
         class="grow flex justify-center items-center p-1 hover:bg-slate-200"
         :class="currentTab == 'TSidebarContent' ? 'bg-slate-200' : ''"
-        @click="handleTab('TSideBarContent')"
+        @click="handleTab('TSidebarContent')"
         title="Edit Content"
       >
         <PencilSquareIcon class="w-7 h-7" />
@@ -150,10 +150,7 @@ const currentTab = ref('TSidebarContent');
 const tabs = { TSidebarContent, TSidebarStyles, TSidebarBoxing, TSidebarPage };
 
 function handleTab(component) {
-  console.log(currentTab);
-  console.log(tabs[currentTab.value]);
   currentTab.value = component;
-  console.log(currentTab);
 }
 
 function handlePropChange(name, event) {
