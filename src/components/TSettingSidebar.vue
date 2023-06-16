@@ -49,6 +49,7 @@
     </div>
 
     <component :is="tabs[currentTab]"></component>
+
     <!--
     <TAccordion color="gray" mode="fill">
       <TAccordionItem label="content" class="bg-white">
