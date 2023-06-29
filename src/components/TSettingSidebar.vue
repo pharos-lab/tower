@@ -18,7 +18,7 @@
       "
     >
       <div
-        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        class="grow flex justify-center items-center p-1 hover:bg-slate-300"
         :class="currentTab == 'TSidebarContent' ? 'bg-slate-200' : ''"
         @click="handleTab('TSidebarContent')"
         title="Edit Content"
@@ -26,21 +26,21 @@
         <PencilSquareIcon class="w-7 h-7" />
       </div>
       <div
-        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        class="grow flex justify-center items-center p-1 hover:bg-slate-300"
         :class="currentTab == 'TSidebarStyles' ? 'bg-slate-200' : ''"
         @click="handleTab('TSidebarStyles')"
       >
         <RectangleGroupIcon class="w-7 h-7" />
       </div>
       <div
-        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        class="grow flex justify-center items-center p-1 hover:bg-slate-300"
         :class="currentTab == 'TSidebarBoxing' ? 'bg-slate-200' : ''"
         @click="handleTab('TSidebarBoxing')"
       >
         <CubeIcon class="w-7 h-7" />
       </div>
       <div
-        class="grow flex justify-center items-center p-1 hover:bg-slate-200"
+        class="grow flex justify-center items-center p-1 hover:bg-slate-300"
         :class="currentTab == 'TSidebarPage' ? 'bg-slate-200' : ''"
         @click="handleTab('TSidebarPage')"
       >
