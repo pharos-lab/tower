@@ -10,4 +10,9 @@
 import AddPanel from './AddPanel.vue';
 import Page from './Page.vue';
 import Custom from './Custom.vue';
+
+import { pageBuilder } from '../stores/store.ts'
+
+console.log(pageBuilder);
+
 </script>
