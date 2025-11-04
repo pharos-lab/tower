@@ -2,13 +2,14 @@ import type { LucideIcon } from "lucide-vue-next"
 
 export interface PageBuilder {
     title?: string
-    sections: Section[]
+    sections: Section[],
+    addSection: CallableFunction
 }
 
 export interface Section {
     id: string
     layout: Layout
-    blocks: Block[]
+    blocks?: Block[]
 }
 
 export interface Layout {
