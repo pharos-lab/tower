@@ -17,12 +17,21 @@
             </div>
 
             <div 
-                class="block relative hover:bg-slate-50 p-4"
+                class="relative p-4"
+                :class="[{'bg-slate-100 hover:bg-slate-200': block.components.length == 0}, {'bg-slate-200': block.components.length == 0 && pageBuilder.currentBlock == block}]"
                 v-for="block in section.blocks"
                 :key="block.id"
                 @click="pageBuilder.currentBlock = block"
             >
-                <pre>{{  block }}</pre>
+                <div 
+                    class="relative hover:bg-slate-100 p-4"
+                    :class="{'ring-2 ring-slate-500': pageBuilder.currentComponent == component}"
+                    v-for="component in block.components"
+                    :key="component.id"
+                    @click="pageBuilder.currentComponent = component"
+                >
+                    <pre>{{  component }}</pre>
+                </div>
             </div>
         </section>
     </div>
