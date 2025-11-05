@@ -14,6 +14,7 @@ export const pageBuilder: PageBuilder = reactive({
         const section: Section = {
             id: generateId(),
             layout: layout,
+            blocks: this.generateBlocks(layout.cols)
         }
 
         this.sections.push(section)
@@ -33,4 +34,19 @@ export const pageBuilder: PageBuilder = reactive({
             this.sections.splice(index, 1)
         }
     },
+
+    generateBlocks(cols: number = 1) {
+        const blocks: Block[] = []
+
+        for (let index = 0; index < cols; index++) {
+            blocks.push({
+                id: generateId(),
+                components: []
+            })
+        }
+
+        this.currentBlock = blocks[0] || null
+
+        return blocks
+    }
 })
