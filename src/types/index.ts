@@ -5,9 +5,12 @@ export interface PageBuilder {
     sections: Section[]
     currentSection: Section | null
     currentBlock: Block | null
+    currentComponent: Component | null
 
     addSection: CallableFunction
     removeSection: CallableFunction
+    addComponent: CallableFunction
+    generateBlocks: CallableFunction
 }
 
 export interface Section {

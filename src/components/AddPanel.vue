@@ -1,9 +1,8 @@
 <template>
-    <div class="w-64 max-h-full overflow-y-auto shrink-0 p-2">
+    <div class="w-56 max-h-full overflow-y-auto shrink-0 p-2">
         <Tabs default-value="sections">
-            <TabsList>
+            <TabsList class="w-full">
                 <TabsTrigger value="sections">Sections</TabsTrigger>
-                <TabsTrigger value="blocks">Blocks</TabsTrigger>
                 <TabsTrigger value="components">Components</TabsTrigger>
             </TabsList>
 
@@ -21,12 +20,17 @@
                 </div>
             </TabsContent>
 
-            <TabsContent value="blocks">
-                blocks
-            </TabsContent>
-
             <TabsContent value="components">
-                components
+                <div class="grid grid-cols-2 gap-2 flex-wrap">
+                    <Card 
+                        class="justify-center aspect-square items-center gap-2 hover:bg-slate-100" 
+                        v-for="component in components" 
+                        :key="component.name"
+                        @click="pageBuilder.addComponent(component.name)"
+                    >
+                        <p class="text-sm font-semibold text-slate-900/70">{{ component.name }}</p>
+                    </Card>
+                </div>
             </TabsContent>
         </Tabs>
         
@@ -36,6 +40,7 @@
 <script setup lang="ts">
 import { Card } from './ui/card';
 import { layouts } from '@/utils/layouts';
+import { components } from '@/utils/components.ts';
 import { pageBuilder } from '../stores/store.ts'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
