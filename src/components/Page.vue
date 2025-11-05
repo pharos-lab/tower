@@ -1,18 +1,46 @@
-<script setup lang="ts">
-import { pageBuilder } from '@/stores/store';
-
-</script>
-
 <template>
-    <div class="grow bg-slate-100 max-h-full overflow-y-auto p-1">
+    <div class="grow max-h-full overflow-y-auto p-1">
         <section 
+            class="section relative grid p-8 " 
+            :class="[{'ring-2 ring-slate-500': pageBuilder.currentSection == section }, gridClass(section.layout.cols)]"
             v-for="section in pageBuilder.sections" 
-            class="relative group hover:ring-2 hover:ring-red-500" 
-            :class="{'ring-2 ring-emerald-500': pageBuilder.currentSection == section }"
+            :key="section.id"
             @click="pageBuilder.currentSection = section"
         >
-            <button class="hidden absolute -top-3 left-1/2 -translate-x-1/2 group-hover:block" @click="pageBuilder.removeSection(section.id)">supprimer</button>
-            <pre>{{ section }}</pre>
+            <div 
+                class="actions absolute top-1 right-4 bg-slate-200 z-50 leading-none p-1 rounded"
+                :class="[pageBuilder.currentSection == section ? 'block' : 'hidden']"
+            >
+                <button class="cursor-pointer" @click="pageBuilder.removeSection(section.id)" title="Delete section">
+                    <Trash class="size-5"></Trash>
+                </button>
+            </div>
+
+            <div 
+                class="block relative hover:bg-slate-50 p-4"
+                v-for="block in section.blocks"
+                :key="block.id"
+                @click="pageBuilder.currentBlock = block"
+            >
+                <pre>{{  block }}</pre>
+            </div>
         </section>
     </div>
 </template>
+
+<script setup lang="ts">
+import { pageBuilder } from '@/stores/store';
+import { Trash } from 'lucide-vue-next';
+
+
+const gridClass = ((cols: number) => {
+    const map = [
+        'grid-cols-1',
+        'grid-cols-2',
+        'grid-cols-3',
+        'grid-cols-4'
+    ]
+
+    return map[cols - 1]
+})
+</script>
