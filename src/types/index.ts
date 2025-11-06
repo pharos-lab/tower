@@ -6,6 +6,7 @@ export interface PageBuilder {
     currentSection: Section | null
     currentBlock: Block | null
     currentComponent: Component | null
+    tabs: string
 
     addSection: CallableFunction
     removeSection: CallableFunction
