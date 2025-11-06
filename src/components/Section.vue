@@ -1,15 +1,31 @@
 <template>
     <section 
-        class="section relative grid p-8 " 
-        :class="[{'ring-2 ring-slate-500': pageBuilder.currentSection == section }, gridClass(section.layout.cols)]"
+        class="section relative grid p-8 transition-all duration-200 border-2" 
+        :class="[
+            gridClass(section.layout.cols), 
+            { 
+                'border-blue-400 bg-blue-50/30': isSelected,
+                'hover:border-slate-200 border-transparent': !isSelected
+            }
+        ]"
         @click="pageBuilder.currentSection = section"
     >
+
         <div 
-            class="actions absolute top-1 right-4 bg-slate-200 z-50 leading-none p-1 rounded"
-            :class="[pageBuilder.currentSection == section ? 'block' : 'hidden']"
+            class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border   shadow-sm transition-opacity z-50"
+            :class="[
+                isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
+                pageBuilder.currentSection !== pageBuilder.sections[0] ? '-translate-y-full rounded-t-lg border-b-2 border-b-blue-400' : 'rounded-b-lg'
+            ]"
         >
-            <button class="cursor-pointer" @click="pageBuilder.removeSection(section.id)" title="Delete section">
-                <Trash class="size-5"></Trash>
+            <component :is="section.layout.icon" class="size-4 text-blue-500"></component>
+            <span class="text-xs font-medium text-slate-700">{{ section.layout.name }}</span>
+            <button 
+                @click.stop="pageBuilder.removeSection(section.id)" 
+                class="ml-2 p-1 hover:bg-red-50 rounded transition-colors group"
+                title="Delete section"
+            >
+                <Trash class="size-3.5 text-slate-400 group-hover:text-red-500"></Trash>
             </button>
         </div>
 
@@ -21,11 +37,15 @@
 import { pageBuilder } from '@/stores/store';
 import { Trash } from 'lucide-vue-next';
 import type { Section } from '@/types';
+import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     section: Section
 }>()
 
+
+const isSelected = computed(() => pageBuilder.currentSection == props.section)
+console.log(isSelected);
 
 const gridClass = ((cols: number) => {
     const map = [
