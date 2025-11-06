@@ -10,6 +10,7 @@ export interface PageBuilder {
     addSection: CallableFunction
     removeSection: CallableFunction
     addComponent: CallableFunction
+    removeComponent: CallableFunction
     generateBlocks: CallableFunction
 }
 

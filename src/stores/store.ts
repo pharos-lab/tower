@@ -59,6 +59,18 @@ export const pageBuilder: PageBuilder = reactive({
         this.currentBlock?.components.push(component)
 
         this.currentComponent = component
+    },
+
+    removeComponent(componentId: string) {
+        const index = this.currentBlock?.components.findIndex(component => component.id === componentId)
+
+        if (this.currentComponent?.id === componentId) {
+            this.currentComponent = null
+        }
+
+        if (index != null && index > -1) {
+            this.currentBlock?.components.splice(index, 1)
+        }
     }
     
 })
