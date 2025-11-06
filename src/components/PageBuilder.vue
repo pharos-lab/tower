@@ -11,8 +11,9 @@ import AddPanel from './AddPanel.vue';
 import Page from './Page.vue';
 import Custom from './Custom.vue';
 
-import { pageBuilder } from '../stores/store.ts'
+import { usePageBuilder } from '../stores/store.ts'
 
+const pageBuilder = usePageBuilder()
 console.log(pageBuilder);
 
 </script>

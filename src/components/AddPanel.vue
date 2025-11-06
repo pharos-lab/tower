@@ -1,6 +1,6 @@
 <template>
-    <div class="w-56 max-h-full overflow-y-auto shrink-0 p-2">
-        <Tabs default-value="sections">
+    <div class="w-56 max-h-full overflow-y-auto shrink-0 p-2 bg-slate-50">
+        <Tabs v-model="pageBuilder.tabs">
             <TabsList class="w-full">
                 <TabsTrigger value="sections">Sections</TabsTrigger>
                 <TabsTrigger value="components">Components</TabsTrigger>
@@ -41,7 +41,8 @@
 import { Card } from './ui/card';
 import { layouts } from '@/utils/layouts';
 import { components } from '@/utils/components.ts';
-import { pageBuilder } from '../stores/store.ts'
+import { usePageBuilder } from '../stores/store.ts'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
+const pageBuilder = usePageBuilder()
 </script>
