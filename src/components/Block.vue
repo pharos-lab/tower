@@ -51,8 +51,6 @@ const blockClasses = computed(() => {
 
 function handleClick() {
   pageBuilder.currentBlock = props.block
-  pageBuilder.tabs = 'components' // ✅ simple et réactif
-  console.log(pageBuilder);
-  
+  pageBuilder.tabs = 'components'
 }
 </script>

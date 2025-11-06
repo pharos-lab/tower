@@ -9,7 +9,7 @@
     >
 
         <div 
-            class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border   shadow-sm transition-opacity z-50"
+            class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-10"
             :class="[
                 isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
                 pageBuilder.currentSection !== pageBuilder.sections[0] 
