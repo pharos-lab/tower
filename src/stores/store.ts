@@ -68,8 +68,7 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
       currentBlock.value?.components.splice(index, 1)
     }
   }
-
-  // --- expose state + actions ---
+  
   return {
     title,
     sections,
