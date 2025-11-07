@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-vue-next"
+import type { Component as VueComponent } from "vue"
 
 export interface PageBuilder {
     title?: string
@@ -35,4 +36,9 @@ export interface Block {
 export interface Component {
     id: string
     name: string
+    label?: string
+    component: VueComponent
+    props: Record<string, unknown>
+    children?: Component[]
+    icon?: LucideIcon
 }

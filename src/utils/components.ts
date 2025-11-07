@@ -1,16 +1,15 @@
+import { Button } from "@/components/ui/button"
+import type { Component } from "@/types"
+import { markRaw } from "vue"
 
-
-export const components = [
+export const components: Component[] = [
     {
-        name: 'Button'
-    },
-    {
-        name: 'Link'
-    },
-    {
-        name: 'Card'
-    },
-    {
-        name: 'Alert'
+        id: '',
+        name: 'Button',
+        label: 'Button',
+        component: markRaw(Button),
+        props: {
+            variant: 'primary'
+        },
     },
 ]

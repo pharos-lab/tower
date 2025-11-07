@@ -1,12 +1,12 @@
 <template>
     <div 
         class="relative hover:bg-slate-50 p-4 rounded-lg z-20"
-        :class="{'ring-2 ring-slate-500': pageBuilder.currentComponent == component}"
+        :class="{'ring-2 ring-slate-500': isSelected}"
         @click="pageBuilder.currentComponent = component"
     >
 
         <div 
-            class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-50 -translate-y-full rounded-t-lg border-b-2 border-b-slate-500"
+            class="absolute top-0 right-2 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-50 -translate-y-full rounded-t-lg border-b-2 border-b-slate-500"
             :class="[
                 isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
             ]"
@@ -23,7 +23,7 @@
             </button>
         </div>
 
-        <pre>{{  component }}</pre>
+        <component :is="component.component" v-bind="component.props"></component>
     </div>
 </template>
 

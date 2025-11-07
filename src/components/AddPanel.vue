@@ -26,7 +26,7 @@
                         class="justify-center aspect-square items-center gap-2 hover:bg-slate-100" 
                         v-for="component in components" 
                         :key="component.name"
-                        @click="pageBuilder.addComponent(component.name)"
+                        @click="pageBuilder.addComponent(component)"
                     >
                         <p class="text-sm font-semibold text-slate-900/70">{{ component.name }}</p>
                     </Card>

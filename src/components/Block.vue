@@ -1,7 +1,7 @@
 <template>
     <div 
-        class="relative transition-all duration-200 min-h-32"
-        :class="blockClasses"
+        class="relative transition-all duration-200"
+        :class="[blockClasses, {'min-h-32': isEmpty}]"
         :key="block.id"
         @click="handleClick"
     >
