@@ -12,18 +12,25 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
     const currentBlock = ref<Block | null>(null)
     const currentComponent = ref<Component | null>(null)
     const panelTabs = ref<'sections' | 'components'>('sections')
-    const customTabs = ref<'sections' | 'block' | 'components'>('section')
+    const customTabs = ref<'section' | 'block' | 'component'>('section')
 
     // --- actions ---
     function addSection(layout: Layout) {
         const section: Section = {
-        id: generateId(),
-        layout,
-        blocks: generateBlocks(layout.cols),
+            id: generateId(),
+            layout,
+            blocks: generateBlocks(layout.cols),
+            styles: {
+                padding: {
+                    value: '',
+                    unit: 'tailwind'
+                },
+            }
         }
 
         sections.value.push(section)
         currentSection.value = section
+        customTabs.value = 'section'
     }
 
     function generateBlocks(cols: number = 1) {
@@ -55,6 +62,7 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
         component.id = generateId()
         currentBlock.value?.components.push(newComponent)
         currentComponent.value = newComponent
+        customTabs.value = "component"
     }
 
     function removeComponent(componentId: string) {
@@ -70,7 +78,7 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
         currentBlock.value?.components.splice(index, 1)
         }
     }
-    
+
     return {
         title,
         sections,

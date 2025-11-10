@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-vue-next"
-import type { Component as VueComponent } from "vue"
+import type { Ref, Component as VueComponent } from "vue"
 
 export interface PageBuilder {
     title?: string
@@ -20,6 +20,7 @@ export interface Section {
     id: string
     layout: Layout
     blocks?: Block[]
+    styles: SectionStyles
 }
 
 export interface Layout {
@@ -41,4 +42,11 @@ export interface Component {
     props: Record<string, unknown>
     children?: Component[]
     icon?: LucideIcon
+}
+
+interface SectionStyles {
+    padding: {
+        value: string
+        unit: string
+    }
 }
