@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="relative hover:bg-slate-50 p-4 rounded-lg z-20"
+        class="component relative hover:bg-slate-50 rounded-lg z-20"
         :class="{'ring-2 ring-slate-500': isSelected}"
         @click="pageBuilder.currentComponent = component"
     >

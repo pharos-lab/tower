@@ -11,7 +11,8 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
     const currentSection = ref<Section | null>(null)
     const currentBlock = ref<Block | null>(null)
     const currentComponent = ref<Component | null>(null)
-    const tabs = ref<'sections' | 'components'>('sections')
+    const panelTabs = ref<'sections' | 'components'>('sections')
+    const customTabs = ref<'sections' | 'block' | 'components'>('section')
 
     // --- actions ---
     function addSection(layout: Layout) {
@@ -76,7 +77,8 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
         currentSection,
         currentBlock,
         currentComponent,
-        tabs,
+        panelTabs,
+        customTabs,
         addSection,
         generateBlocks,
         removeSection,

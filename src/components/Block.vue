@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="relative transition-all duration-200"
+        class="block relative transition-all duration-200"
         :class="[blockClasses, {'min-h-32': isEmpty}]"
         :key="block.id"
         @click="handleClick"
@@ -51,6 +51,6 @@ const blockClasses = computed(() => {
 
 function handleClick() {
   pageBuilder.currentBlock = props.block
-  pageBuilder.tabs = 'components'
+  pageBuilder.panelTabs = 'components'
 }
 </script>

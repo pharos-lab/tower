@@ -1,6 +1,6 @@
 <template>
     <div class="w-56 max-h-full overflow-y-auto shrink-0 p-2 bg-slate-50">
-        <Tabs v-model="pageBuilder.tabs">
+        <Tabs v-model="pageBuilder.panelTabs">
             <TabsList class="w-full">
                 <TabsTrigger value="sections">Sections</TabsTrigger>
                 <TabsTrigger value="components">Components</TabsTrigger>
