@@ -1,15 +1,10 @@
 <template>
     <section 
-        class="section relative grid transition-all duration-200 border-2 gap-2" 
+        class="section-builder relative grid transition-all duration-200 border-2 gap-2" 
         :class="[
-            gridClass(section.layout.cols), 
             selectedClass,
-            stylesClasses
         ]"
-        @click="pageBuilder.currentSection = section"
-        :style="styles"
     >
-    <pre>{{  pageBuilder.currentSection }}</pre>
         <div 
             class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-10"
             :class="[
@@ -32,7 +27,20 @@
             </button>
         </div>
 
-        <slot></slot>
+        <div 
+            class="section"
+            :class="[
+                gridClass(section.layout.cols), 
+                selectedClass,
+            ]"
+            @click="pageBuilder.currentSection = section"
+            :style="styles"
+        >
+        <pre>{{ pageBuilder.currentSection }}</pre>
+            <slot></slot>
+        </div>
+        
+
     </section>
 </template>
 
@@ -68,24 +76,16 @@ const gridClass = ((cols: number) => {
     return map[cols - 1]
 })
 
-const extracted = computed(() => {
+const styles = computed(() => {
   const s = pageBuilder.currentSection?.styles ?? {}
-  const classes: string[] = []
   const result: Record<string, string> = {}
 
   for (const [prop, data] of Object.entries(s) as [string, { value: string; unit: string }][]) {
-    if (data.unit === 'tailwind' && data.value) {
-      classes.push(data.value)
-    } else if (data.value) {
-      result[prop] = `${data.value}${data.unit}`
-    }
+    result[prop] = `${data.value}${data.unit}`
   }
 
-  return { classes, styles: result }
+  return result
 })
-
-const stylesClasses = computed(() => extracted.value.classes.join(' '))
-const styles = computed(() => extracted.value.styles)
 
 
 </script>

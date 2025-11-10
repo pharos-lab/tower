@@ -22,9 +22,9 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
             blocks: generateBlocks(layout.cols),
             styles: {
                 padding: {
-                    value: '',
-                    unit: 'tailwind'
-                },
+                    value: '16',
+                    unit: 'px'
+                }
             }
         }
 

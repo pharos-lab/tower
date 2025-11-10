@@ -44,9 +44,35 @@ export interface Component {
     icon?: LucideIcon
 }
 
-interface SectionStyles {
-    padding: {
-        value: string
-        unit: string
-    }
+export interface UnitValue {
+  value: string
+  unit: string
 }
+
+export interface SectionStyles {
+  // Spacing
+  padding: UnitValue
+  margin?: UnitValue
+  gap?: UnitValue
+
+  // Background
+  backgroundColor?: string
+  backgroundImage?: string
+
+  // Borders
+  borderRadius?: UnitValue
+  border?: UnitValue
+  borderTop?: UnitValue
+  borderRight?: UnitValue
+  borderBottom?: UnitValue
+  borderLeft?: UnitValue
+
+  // Dimensions
+  minHeight?: UnitValue
+  maxHeight?: UnitValue
+  width?: UnitValue
+
+  // Custom
+  customClasses?: string
+}
+

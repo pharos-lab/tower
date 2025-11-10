@@ -21,7 +21,7 @@
                             <component :is="pageBuilder.currentSection.layout.icon" class="size-4 text-blue-600"></component>
                             <span class="text-sm font-semibold text-blue-900">{{ pageBuilder.currentSection.layout.name }}</span>
                         </div>
-                        <p class="text-xs text-blue-600 font-mono">id: {{ pageBuilder.currentSection.id.slice(0, 12) }}</p>
+                        <p class="text-xs text-blue-600 font-mono">id: {{ pageBuilder.currentSection.id }}</p>
                     </div>
 
                     <!-- Spacing -->
@@ -39,13 +39,12 @@
                                     class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     
-                                    <Select default-value="tailwind" v-model="pageBuilder.currentSection.styles.padding.unit">
+                                    <Select v-model="pageBuilder.currentSection.styles.padding.unit">
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select a unit" ></SelectValue>
                                         </SelectTrigger>
                                         
                                         <SelectContent>
-                                            <SelectItem value="tailwind">Tailwind</SelectItem>
                                             <SelectItem value="px">Px</SelectItem>
                                             <SelectItem value="rem">Rem</SelectItem>
                                         </SelectContent>

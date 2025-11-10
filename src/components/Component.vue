@@ -22,7 +22,6 @@
                 <Trash class="size-3.5 text-slate-400 group-hover:text-red-500"></Trash>
             </button>
         </div>
-
         <component :is="component.component" v-bind="component.props"></component>
     </div>
 </template>
