@@ -6,6 +6,8 @@
                 <Component v-for="component in block.components" :component :key=" component.id"></Component>
             </Block>
         </Section>
+
+        <pre>{{ pageBuilder }}</pre>
     </div>
 </template>
 

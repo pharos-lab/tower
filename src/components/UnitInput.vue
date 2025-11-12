@@ -1,6 +1,6 @@
 <template>
     <Select v-model="model">
-        <SelectTrigger>
+        <SelectTrigger class="py-0 gap-1 rounded" size="sm">
             <SelectValue placeholder="Select a unit"></SelectValue>
         </SelectTrigger>
         

@@ -76,7 +76,7 @@ const gridClass = ((cols: number) => {
 })
 
 const styles = computed(() => {
-    const s = pageBuilder.currentSection?.styles ?? {}
+    const s = props.section.styles ?? {}
     const result: Record<string, string> = {}
 
     for (const [prop, data] of Object.entries(s) as [string, UnitValue][]) {

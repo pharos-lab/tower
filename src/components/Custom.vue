@@ -14,7 +14,7 @@
                     <p>No section selected</p>
                 </div>
 
-                <div class="space-y-6" v-else>
+                <div class="space-y-4" v-else>
                     <!-- Section Info -->
                     <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
                         <div class="flex items-center gap-2 mb-1">
@@ -26,17 +26,20 @@
 
                     <!-- Spacing -->
                     <div>
-                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Spacing</h3>
+                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Spacing</h3>
                         <div class="space-y-3">
+                            <div class="grid grid-cols-2 gap-2">
+
+                            
                             <!-- Padding -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Padding</label>
-                                <div class="flex gap-2">
+                                <div class="flex gap-1">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.padding.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.padding.unit" />
                                 </div>
@@ -45,26 +48,26 @@
                             <!-- Margin -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Margin</label>
-                                <div class="flex gap-2">
+                                <div class="flex gap-1">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.margin.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.margin.unit" />
                                 </div>
                             </div>
-
+                            </div>
                             <!-- Gap -->
-                            <div>
+                            <div v-if="pageBuilder.currentSection.layout.cols != 1">
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Gap</label>
                                 <div class="flex gap-2">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.gap.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.gap.unit" />
                                 </div>
@@ -74,14 +77,14 @@
 
                     <!-- Background -->
                     <div>
-                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Background</h3>
-                        <div class="space-y-3">
+                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Background</h3>
+                        <div class="space-y-2">
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Background Color</label>
                                 <input 
                                     type="color"
                                     v-model="pageBuilder.currentSection.styles.backgroundColor"
-                                    class="w-full h-9 border border-slate-300 rounded-md cursor-pointer"
+                                    class="w-full h-8 border border-slate-300 rounded cursor-pointer"
                                 />
                             </div>
 
@@ -91,7 +94,7 @@
                                     type="text"
                                     v-model="pageBuilder.currentSection.styles.backgroundImage"
                                     placeholder="https://..."
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                         </div>
@@ -99,8 +102,8 @@
 
                     <!-- Borders -->
                     <div>
-                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Borders</h3>
-                        <div class="space-y-3">
+                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Borders</h3>
+                        <div class="space-y-2">
                             <!-- Border Width -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Border</label>
@@ -109,12 +112,12 @@
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.borderWidth.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.borderWidth.unit" />
 
                                     <Select v-model="pageBuilder.currentSection.styles.borderStyle">
-                                        <SelectTrigger>
+                                        <SelectTrigger size="sm" class="rounded">
                                             <SelectValue placeholder="Select a unit"></SelectValue>
                                         </SelectTrigger>
                                         
@@ -133,7 +136,7 @@
                                     <input 
                                         type="color"
                                         v-model="pageBuilder.currentSection.styles.borderColor"
-                                        class="w-full h-9 border border-slate-300 rounded-md cursor-pointer"
+                                        class="w-full h-8 border border-slate-300 rounded cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -146,7 +149,7 @@
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.borderRadius.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.borderRadius.unit" />
                                 </div>
@@ -156,8 +159,8 @@
 
                     <!-- Dimensions -->
                     <div>
-                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Dimensions</h3>
-                        <div class="space-y-3">
+                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Dimensions</h3>
+                        <div class="space-y-2">
                             <!-- Min Height -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Min Height</label>
@@ -166,7 +169,7 @@
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.minHeight.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.minHeight.unit" />
                                 </div>
@@ -180,7 +183,7 @@
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.maxHeight.value"
                                         placeholder="0"
-                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <UnitInput v-model="pageBuilder.currentSection.styles.maxHeight.unit" />
                                 </div>
@@ -190,15 +193,15 @@
 
                     <!-- Custom -->
                     <div>
-                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Custom</h3>
-                        <div class="space-y-3">
+                        <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Custom</h3>
+                        <div class="space-y-2">
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Custom Classes</label>
                                 <input 
                                     type="text"
                                     v-model="pageBuilder.currentSection.styles.customClasses"
                                     placeholder="e.g. bg-slate-100 p-4"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                         </div>
