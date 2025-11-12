@@ -61,7 +61,9 @@ export interface SectionStyles {
 
   // Borders
   borderRadius: UnitValue
-  border: UnitValue
+  borderWidth: UnitValue
+  borderStyle: string
+  borderColor: string
 
   // Dimensions
   minHeight: UnitValue

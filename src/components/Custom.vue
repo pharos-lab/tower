@@ -31,7 +31,7 @@
                             <!-- Padding -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Padding</label>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="flex gap-2">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.padding.value"
@@ -45,7 +45,7 @@
                             <!-- Margin -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Margin</label>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="flex gap-2">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.margin.value"
@@ -59,7 +59,7 @@
                             <!-- Gap -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Gap</label>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="flex gap-2">
                                     <input 
                                         type="text"
                                         v-model="pageBuilder.currentSection.styles.gap.value"
@@ -104,14 +104,37 @@
                             <!-- Border Width -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-600 mb-1">Border</label>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="flex gap-2">
                                     <input 
                                         type="text"
-                                        v-model="pageBuilder.currentSection.styles.border.value"
+                                        v-model="pageBuilder.currentSection.styles.borderWidth.value"
                                         placeholder="0"
                                         class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
-                                    <UnitInput v-model="pageBuilder.currentSection.styles.border.unit" />
+                                    <UnitInput v-model="pageBuilder.currentSection.styles.borderWidth.unit" />
+
+                                    <Select v-model="pageBuilder.currentSection.styles.borderStyle">
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a unit"></SelectValue>
+                                        </SelectTrigger>
+                                        
+                                        <SelectContent>
+                                            <SelectItem value="solid">solid</SelectItem>
+                                            <SelectItem value="dashed">dashed</SelectItem>
+                                            <SelectItem value="dotted">dotted</SelectItem>
+                                            <SelectItem value="groove">groove</SelectItem>
+                                            <SelectItem value="double">double</SelectItem>
+                                            <SelectItem value="ridge">ridge</SelectItem>
+                                            <SelectItem value="inset">inset</SelectItem>
+                                            <SelectItem value="outset">outset</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+
+                                    <input 
+                                        type="color"
+                                        v-model="pageBuilder.currentSection.styles.borderColor"
+                                        class="w-full h-9 border border-slate-300 rounded-md cursor-pointer"
+                                    />
                                 </div>
                             </div>
 

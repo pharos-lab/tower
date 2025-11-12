@@ -26,10 +26,12 @@ export const defaultSectionStyles: SectionStyles = {
         value: '',
         unit: 'px'
     },
-    border: {
+    borderWidth: {
         value: '',
         unit: 'px'
     },
+    borderStyle: 'solid',
+    borderColor: '#000000',
 
     // Dimensions
     minHeight: {
