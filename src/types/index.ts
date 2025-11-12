@@ -52,27 +52,26 @@ export interface UnitValue {
 export interface SectionStyles {
   // Spacing
   padding: UnitValue
-  margin?: UnitValue
-  gap?: UnitValue
+  margin: UnitValue
+  gap: UnitValue
 
   // Background
-  backgroundColor?: string
-  backgroundImage?: string
+  backgroundColor: string
+  backgroundImage: string
 
   // Borders
-  borderRadius?: UnitValue
-  border?: UnitValue
-  borderTop?: UnitValue
-  borderRight?: UnitValue
-  borderBottom?: UnitValue
-  borderLeft?: UnitValue
+  borderRadius: UnitValue
+  border: UnitValue
 
   // Dimensions
-  minHeight?: UnitValue
-  maxHeight?: UnitValue
-  width?: UnitValue
+  minHeight: UnitValue
+  maxHeight: UnitValue
 
   // Custom
-  customClasses?: string
+  customClasses: string
+}
+
+export type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
 }
 

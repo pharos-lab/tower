@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Layout, Section, Block, Component } from '@/types'
+import { createSectionStyles } from '@/utils/styles'
 
 const generateId = () => `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
 
@@ -20,12 +21,11 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
             id: generateId(),
             layout,
             blocks: generateBlocks(layout.cols),
-            styles: {
+            styles: createSectionStyles({
                 padding: {
-                    value: '16',
-                    unit: 'px'
-                }
-            }
+                    value: '1',
+                },
+            })
         }
 
         sections.value.push(section)
