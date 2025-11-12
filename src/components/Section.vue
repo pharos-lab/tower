@@ -36,7 +36,6 @@
             @click="pageBuilder.currentSection = section"
             :style="styles"
         >
-        <pre>{{ pageBuilder.currentSection }}</pre>
             <slot></slot>
         </div>
         
@@ -47,7 +46,7 @@
 <script setup lang="ts">
 import { usePageBuilder } from '@/stores/store';
 import { Trash } from 'lucide-vue-next';
-import type { Section } from '@/types';
+import type { Section, UnitValue } from '@/types';
 import { computed } from 'vue';
 
 const props = defineProps<{
@@ -67,24 +66,28 @@ const selectedClass = computed(() => {
 
 const gridClass = ((cols: number) => {
     const map = [
-        'grid-cols-1',
-        'grid-cols-2',
-        'grid-cols-3',
-        'grid-cols-4'
+        'grid grid-cols-1',
+        'grid grid-cols-2',
+        'grid grid-cols-3',
+        'grid grid-cols-4'
     ]
 
     return map[cols - 1]
 })
 
 const styles = computed(() => {
-  const s = pageBuilder.currentSection?.styles ?? {}
-  const result: Record<string, string> = {}
+    const s = pageBuilder.currentSection?.styles ?? {}
+    const result: Record<string, string> = {}
 
-  for (const [prop, data] of Object.entries(s) as [string, { value: string; unit: string }][]) {
-    result[prop] = `${data.value}${data.unit}`
-  }
+    for (const [prop, data] of Object.entries(s) as [string, UnitValue][]) {
+        if (typeof data === 'string') {
+            result[prop] = data
+        } else {
+            result[prop] = `${data.value}${data.unit}`
+        }
+    }
 
-  return result
+    return result
 })
 
 
