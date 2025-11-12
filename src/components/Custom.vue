@@ -200,7 +200,7 @@
                                 <input 
                                     type="text"
                                     v-model="pageBuilder.currentSection.styles.customClasses"
-                                    placeholder="e.g. bg-slate-100 p-4"
+                                    placeholder="e.g. my-custom-class"
                                     class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
@@ -211,7 +211,46 @@
 
             <!-- BLOCK TAB -->
             <TabsContent value="block" class="p-4">
-                <div class="text-slate-400 text-sm">Block customization coming soon...</div>
+                <div v-if="!pageBuilder.currentBlock" class="text-center py-12 text-slate-400">
+                    <p>No block selected</p>
+                </div>
+
+                <div v-else class="space-y-4">
+                    <!-- Block Info -->
+                    <div class="p-3 bg-purple-50 rounded-lg border border-purple-200">
+                        <p class="text-sm font-semibold text-purple-900"> {{ pageBuilder.currentBlock.components.length }} components</p>
+                        <p class="text-xs font-mono text-purple-600">id: {{ pageBuilder.currentBlock.id }}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Align Items</label>
+                    <Select v-model="pageBuilder.currentBlock.styles.alignItems" v-if="pageBuilder.currentBlock">
+                        <SelectTrigger size="sm" class="rounded">
+                        <SelectValue placeholder="Align" />
+                        </SelectTrigger>
+                        <SelectContent>
+                        <SelectItem value="start">Start</SelectItem>
+                        <SelectItem value="center">Center</SelectItem>
+                        <SelectItem value="end">End</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Justify Content</label>
+                    <Select v-model="pageBuilder.currentBlock.styles.justifyContent" v-if="pageBuilder.currentBlock">
+                        <SelectTrigger size="sm" class="rounded">
+                        <SelectValue placeholder="Justify" />
+                        </SelectTrigger>
+                        <SelectContent>
+                        <SelectItem value="start">Start</SelectItem>
+                        <SelectItem value="center">Center</SelectItem>
+                        <SelectItem value="end">End</SelectItem>
+                        <SelectItem value="between">Between</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    </div>
             </TabsContent>
 
             <!-- COMPONENT TAB -->

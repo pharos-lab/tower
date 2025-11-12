@@ -52,5 +52,6 @@ const blockClasses = computed(() => {
 function handleClick() {
   pageBuilder.currentBlock = props.block
   pageBuilder.panelTabs = 'components'
+  pageBuilder.customTabs = 'block'
 }
 </script>

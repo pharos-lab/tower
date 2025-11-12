@@ -32,6 +32,7 @@ export interface Layout {
 export interface Block {
     id: string
     components: Component[]
+    styles: BlockStyles
 }
 
 export interface Component {
@@ -72,6 +73,20 @@ export interface SectionStyles {
   // Custom
   customClasses: string
 }
+
+export interface BlockStyles {
+  padding: UnitValue
+  margin: UnitValue
+  backgroundColor: string
+  borderRadius: UnitValue
+  borderWidth: UnitValue
+  borderStyle: string
+  borderColor: string
+  customClasses: string
+  alignItems: 'start' | 'center' | 'end' | 'normal' | 'stretch'
+  justifyContent: 'start' | 'center' | 'end' | 'between' | 'normal'
+}
+
 
 export type DeepPartial<T> = {
     [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
