@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="block relative transition-all duration-200"
+        class="block-builder relative transition-all duration-200"
         :class="[blockClasses, {'min-h-32': isEmpty}]"
         :key="block.id"
         @click="handleClick"
@@ -17,14 +17,18 @@
                 <p>Add a component</p>
             </div>
         </div>
-
-        <slot></slot>
+        <div 
+            class="flex flex-col h-full"
+            :style="styles"
+        >
+            <slot></slot>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { usePageBuilder } from '@/stores/store';
-import type { Block } from '@/types';
+import type { Block, UnitValue } from '@/types';
 import { Plus } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -54,4 +58,20 @@ function handleClick() {
   pageBuilder.panelTabs = 'components'
   pageBuilder.customTabs = 'block'
 }
+
+const styles = computed(() => {
+    const s = props.block.styles ?? {}
+    const result: Record<string, string> = {}
+
+    for (const [prop, data] of Object.entries(s) as [string, UnitValue][]) {
+        if (typeof data === 'string') {
+            result[prop] = data
+        } else {
+            result[prop] = `${data.value}${data.unit}`
+        }
+    }
+
+    return result
+})
+
 </script>

@@ -1,0 +1,207 @@
+<template>
+    <div v-if="!pageBuilder.currentSection" class="text-center py-12 text-slate-400">
+        <p>No section selected</p>
+    </div>
+
+    <div class="space-y-4" v-else>
+        <!-- Section Info -->
+        <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <div class="flex items-center gap-2 mb-1">
+                <component :is="pageBuilder.currentSection.layout.icon" class="size-4 text-blue-600"></component>
+                <span class="text-sm font-semibold text-blue-900">{{ pageBuilder.currentSection.layout.name }}</span>
+            </div>
+            <p class="text-xs text-blue-600 font-mono">id: {{ pageBuilder.currentSection.id }}</p>
+        </div>
+
+        <!-- Spacing -->
+        <div>
+            <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Spacing</h3>
+            <div class="space-y-3">
+                <div class="grid grid-cols-2 gap-2">
+
+                
+                <!-- Padding -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Padding</label>
+                    <div class="flex gap-1">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.padding.value"
+                            placeholder="0"
+                            class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.padding.unit" />
+                    </div>
+                </div>
+
+                <!-- Margin -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Margin</label>
+                    <div class="flex gap-1">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.margin.value"
+                            placeholder="0"
+                            class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.margin.unit" />
+                    </div>
+                </div>
+                </div>
+                <!-- Gap -->
+                <div v-if="pageBuilder.currentSection.layout.cols != 1">
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Gap</label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.gap.value"
+                            placeholder="0"
+                            class="w-full px-3 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.gap.unit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background -->
+        <div>
+            <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Background</h3>
+            <div class="space-y-2">
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Background Color</label>
+                    <input 
+                        type="color"
+                        v-model="pageBuilder.currentSection.styles.backgroundColor"
+                        class="w-full h-8 border border-slate-300 rounded cursor-pointer"
+                    />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Background Image URL</label>
+                    <input 
+                        type="text"
+                        v-model="pageBuilder.currentSection.styles.backgroundImage"
+                        placeholder="https://..."
+                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Borders -->
+        <div>
+            <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Borders</h3>
+            <div class="space-y-2">
+                <!-- Border Width -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Border</label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.borderWidth.value"
+                            placeholder="0"
+                            class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.borderWidth.unit" />
+
+                        <Select v-model="pageBuilder.currentSection.styles.borderStyle">
+                            <SelectTrigger size="sm" class="rounded">
+                                <SelectValue placeholder="Select a unit"></SelectValue>
+                            </SelectTrigger>
+                            
+                            <SelectContent>
+                                <SelectItem value="solid">solid</SelectItem>
+                                <SelectItem value="dashed">dashed</SelectItem>
+                                <SelectItem value="dotted">dotted</SelectItem>
+                                <SelectItem value="groove">groove</SelectItem>
+                                <SelectItem value="double">double</SelectItem>
+                                <SelectItem value="ridge">ridge</SelectItem>
+                                <SelectItem value="inset">inset</SelectItem>
+                                <SelectItem value="outset">outset</SelectItem>
+                            </SelectContent>
+                        </Select>
+
+                        <input 
+                            type="color"
+                            v-model="pageBuilder.currentSection.styles.borderColor"
+                            class="w-full h-8 border border-slate-300 rounded cursor-pointer"
+                        />
+                    </div>
+                </div>
+
+                <!-- Border Radius -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Border Radius</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.borderRadius.value"
+                            placeholder="0"
+                            class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.borderRadius.unit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dimensions -->
+        <div>
+            <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Dimensions</h3>
+            <div class="space-y-2">
+                <!-- Min Height -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Min Height</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.minHeight.value"
+                            placeholder="0"
+                            class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.minHeight.unit" />
+                    </div>
+                </div>
+
+                <!-- Max Height -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Max Height</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input 
+                            type="text"
+                            v-model="pageBuilder.currentSection.styles.maxHeight.value"
+                            placeholder="0"
+                            class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <UnitInput v-model="pageBuilder.currentSection.styles.maxHeight.unit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom -->
+        <div>
+            <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Custom</h3>
+            <div class="space-y-2">
+                <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1">Custom Classes</label>
+                    <input 
+                        type="text"
+                        v-model="pageBuilder.currentSection.styles.customClasses"
+                        placeholder="e.g. my-custom-class"
+                        class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { usePageBuilder } from '@/stores/store';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import UnitInput from './UnitInput.vue';
+
+const pageBuilder = usePageBuilder()
+</script>

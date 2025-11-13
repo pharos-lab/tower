@@ -4,9 +4,10 @@
         :class="[
             selectedClass,
         ]"
+        @click="pageBuilder.currentSection = section"
     >
         <div 
-            class="absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-10"
+            class="section-indicator absolute top-0 right-0 flex items-center gap-2 px-3 py-1 bg-white border shadow-sm transition-opacity z-10"
             :class="[
                 isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
                 pageBuilder.currentSection !== pageBuilder.sections[0] 
@@ -31,9 +32,8 @@
             class="section"
             :class="[
                 gridClass(section.layout.cols), 
-                selectedClass,
+                section.styles.customClasses
             ]"
-            @click="pageBuilder.currentSection = section"
             :style="styles"
         >
             <slot></slot>

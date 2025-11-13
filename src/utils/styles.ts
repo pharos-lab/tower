@@ -77,7 +77,7 @@ export const defaultBlockStyles: BlockStyles = {
     // Custom
     customClasses: '',
     alignItems: 'normal',
-    justifyContent: 'start'
+    justifyContent: 'normal'
 }
 /**
  * Create section styles by merging defaults with custom styles
