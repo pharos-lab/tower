@@ -1,14 +1,15 @@
 <template>
     <div 
-        class="block-builder relative transition-all duration-200"
-        :class="[blockClasses, {'min-h-32': isEmpty}]"
+        class="block-builder relative "
+        
         :key="block.id"
         @click="handleClick"
     >
         <!-- When block is empty (no component) -->
         <div 
             v-if="isEmpty"
-            class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm pointer-events-none"
+            class="flex items-center justify-center text-slate-400 text-sm transition-all duration-200"
+            :class="[blockClasses, {'min-h-32': isEmpty}]"
         >
             <div class="text-center">
                 <div class="mb-2">
@@ -18,7 +19,8 @@
             </div>
         </div>
         <div 
-            class="flex flex-col h-full"
+            v-else
+            class="flex flex-col"
             :style="styles"
         >
             <slot></slot>
@@ -57,6 +59,7 @@ function handleClick() {
   pageBuilder.currentBlock = props.block
   pageBuilder.panelTabs = 'components'
   pageBuilder.customTabs = 'block'
+  
 }
 
 const styles = computed(() => {

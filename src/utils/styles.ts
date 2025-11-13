@@ -1,6 +1,6 @@
 // utils/defaultStyles.ts
 import { merge } from 'lodash-es'
-import type { BlockStyles, DeepPartial, SectionStyles } from '@/types'
+import type { BlockStyles, ComponentStyles, DeepPartial, SectionStyles } from '@/types'
 
 export const defaultSectionStyles: SectionStyles = {
     // Spacing
@@ -79,6 +79,36 @@ export const defaultBlockStyles: BlockStyles = {
     alignItems: 'normal',
     justifyContent: 'normal'
 }
+
+export const defaultComponentStyles: ComponentStyles = {
+    // Spacing
+    padding: {
+        value: '',
+        unit: 'rem'
+    },
+    margin: {
+        value: '',
+        unit: 'rem'
+    },
+
+    // Background
+    backgroundColor: '',
+
+    // Borders
+    borderRadius: {
+        value: '',
+        unit: 'px'
+    },
+    borderWidth: {
+        value: '',
+        unit: 'px'
+    },
+    borderStyle: 'solid',
+    borderColor: '#000000',
+
+    // Custom
+    customClasses: '',
+}
 /**
  * Create section styles by merging defaults with custom styles
  * Uses lodash merge for deep merging
@@ -89,4 +119,8 @@ export function createSectionStyles(customStyles: DeepPartial<SectionStyles> = {
 
 export function createBlockStyles(customStyles: DeepPartial<BlockStyles> = {}): BlockStyles {
     return merge({}, defaultBlockStyles, customStyles)
+}
+
+export function createComponentStyles(customStyles: DeepPartial<ComponentStyles> = {}): ComponentStyles {
+    return merge({}, defaultComponentStyles, customStyles)
 }

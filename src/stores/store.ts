@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Layout, Section, Block, Component } from '@/types'
-import { createBlockStyles, createSectionStyles } from '@/utils/styles'
+import { createBlockStyles, createComponentStyles, createSectionStyles } from '@/utils/styles'
 
 const generateId = () => `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
 
@@ -10,9 +10,7 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
     const title = ref('')
     const sections = ref<Section[]>([])
     const currentSection = ref<Section | null>(null)
-    const currentBlock = ref<Block | null>({
-        
-    })
+    const currentBlock = ref<Block | null>()
     const currentComponent = ref<Component | null>(null)
     const panelTabs = ref<'sections' | 'components'>('sections')
     const customTabs = ref<'section' | 'block' | 'component'>('section')
@@ -61,6 +59,7 @@ export const usePageBuilder = defineStore('pageBuilder', () => {
             ...component,
             id: generateId(),
             props: structuredClone(component.props || {}),
+            styles: createComponentStyles()
         }
         component.id = generateId()
         currentBlock.value?.components.push(newComponent)

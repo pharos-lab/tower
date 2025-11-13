@@ -16,12 +16,11 @@
             <!-- BLOCK TAB -->
             <TabsContent value="block" class="p-4">
                 <BlockTab></BlockTab>
-                
             </TabsContent>
 
             <!-- COMPONENT TAB -->
             <TabsContent value="component" class="p-4">
-                <div class="text-slate-400 text-sm">Component customization coming soon...</div>
+                <ComponentTab></ComponentTab>
             </TabsContent>
         </Tabs>
     </div>
@@ -32,6 +31,7 @@ import { Tabs, TabsList, TabsContent, TabsTrigger } from './ui/tabs';
 import { usePageBuilder } from '@/stores/store';
 import SectionTab from './SectionTab.vue';
 import BlockTab from './BlockTab.vue';
+import ComponentTab from './ComponentTab.vue';
 
 const pageBuilder = usePageBuilder()
 </script>

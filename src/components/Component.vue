@@ -1,8 +1,8 @@
 <template>
     <div 
-        class="component-builder relative hover:bg-slate-50 rounded-lg z-20"
+        class="component-builder relative z-20"
         :class="{'ring-2 ring-slate-500': isSelected}"
-        @click="pageBuilder.currentComponent = component"
+        @click.stop="handleClick"
     >
 
         <div 
@@ -22,13 +22,13 @@
                 <Trash class="size-3.5 text-slate-400 group-hover:text-red-500"></Trash>
             </button>
         </div>
-        <component :is="component.component" v-bind="component.props"></component>
+        <component :is="component.component" v-bind="component.props" :style="styles"></component>
     </div>
 </template>
 
 <script setup lang="ts">
 import { usePageBuilder } from '@/stores/store';
-import type { Component } from '@/types';
+import type { Component, UnitValue } from '@/types';
 import { Trash } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -40,4 +40,25 @@ const props = defineProps<{
 const pageBuilder = usePageBuilder()
 
 const isSelected = computed(() => pageBuilder.currentComponent == props.component)
+
+const styles = computed(() => {
+    const s = props.component.styles ?? {}
+    const result: Record<string, string> = {}
+
+    for (const [prop, data] of Object.entries(s) as [string, UnitValue][]) {
+        if (typeof data === 'string') {
+            result[prop] = data
+        } else {
+            result[prop] = `${data.value}${data.unit}`
+        }
+    }
+
+    return result
+})
+
+function handleClick() {
+    pageBuilder.currentComponent = props.component
+    pageBuilder.customTabs = 'component'
+    
+}
 </script>
