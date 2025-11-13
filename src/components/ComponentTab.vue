@@ -116,42 +116,7 @@
         <div>
             <h3 class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-2">Borders</h3>
             <div class="space-y-2">
-                <!-- Border Width -->
-                <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Border</label>
-                    <div class="flex gap-2">
-                        <input 
-                            type="text"
-                            v-model="pageBuilder.currentComponent.styles.borderWidth.value"
-                            placeholder="0"
-                            class="w-full px-3 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <UnitInput v-model="pageBuilder.currentComponent.styles.borderWidth.unit" />
-
-                        <Select v-model="pageBuilder.currentComponent.styles.borderStyle">
-                            <SelectTrigger size="sm" class="rounded">
-                                <SelectValue placeholder="Select a unit"></SelectValue>
-                            </SelectTrigger>
-                            
-                            <SelectContent>
-                                <SelectItem value="solid">solid</SelectItem>
-                                <SelectItem value="dashed">dashed</SelectItem>
-                                <SelectItem value="dotted">dotted</SelectItem>
-                                <SelectItem value="groove">groove</SelectItem>
-                                <SelectItem value="double">double</SelectItem>
-                                <SelectItem value="ridge">ridge</SelectItem>
-                                <SelectItem value="inset">inset</SelectItem>
-                                <SelectItem value="outset">outset</SelectItem>
-                            </SelectContent>
-                        </Select>
-
-                        <input 
-                            type="color"
-                            v-model="pageBuilder.currentComponent.styles.borderColor"
-                            class="w-full h-8 border border-slate-300 rounded cursor-pointer"
-                        />
-                    </div>
-                </div>
+                
 
                 <!-- Border Radius -->
                 <div>

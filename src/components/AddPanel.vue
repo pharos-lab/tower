@@ -28,7 +28,7 @@
                         :key="component.name"
                         @click="pageBuilder.addComponent(component)"
                     >
-                        <p class="text-sm font-semibold text-slate-900/70">{{ component.name }}</p>
+                        <p class="text-sm font-semibold text-slate-900/70">{{ component.label }}</p>
                     </Card>
                 </div>
             </TabsContent>

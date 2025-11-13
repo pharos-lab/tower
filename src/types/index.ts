@@ -41,7 +41,7 @@ export interface Component {
     label?: string
     component: VueComponent
     props: Record<string, unknown>
-    availableProps: Record<string, PropConfig>
+    availableProps?: Record<string, PropConfig>
     children?: Component[]
     icon?: LucideIcon
     styles: ComponentStyles

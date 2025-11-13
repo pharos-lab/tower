@@ -22,19 +22,21 @@
                 <Trash class="size-3.5 text-slate-400 group-hover:text-red-500"></Trash>
             </button>
         </div>
-        <component :is="component.component" v-bind="component.props" :style="styles"></component>
+        <component :is="component.component" v-bind="component.props" :style="styles">
+            <component v-for="child in component.children" :is="child.component" v-bind="child.props">
+            </component>
+        </component>
     </div>
 </template>
 
 <script setup lang="ts">
 import { usePageBuilder } from '@/stores/store';
-import type { Component, UnitValue } from '@/types';
+import type { Component as ComponentDef, UnitValue } from '@/types';
 import { Trash } from 'lucide-vue-next';
 import { computed } from 'vue';
 
-
 const props = defineProps<{
-    component: Component
+    component: ComponentDef
 }>()
 
 const pageBuilder = usePageBuilder()
